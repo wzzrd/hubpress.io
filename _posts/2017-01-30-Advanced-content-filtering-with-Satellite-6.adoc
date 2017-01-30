@@ -7,7 +7,7 @@ If you are ready for a deeper dive into content filtering, then this week's vide
 
 * the difference between include and exclude filters,
 * in what cases it makes sense to combine include and exclude filters,
-* in what cases it does not
+* in what cases it does not,
 * filtering errata vs. filtering packages
 
 Ready? Jump in, right here: https://www.youtube.com/watch?v=p-t4WNctFyI
