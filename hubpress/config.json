@@ -10,7 +10,8 @@
     "description": "A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ",
     "cover": "blog_cover.png",
     "postsPerPage": "5",
-    "googleAnalytics": "UA-1886096-11"
+    "googleAnalytics": "UA-1886096-11",
+    "disqus": "100things"
   },
   "socialnetwork": {
     "email": "maxim+blog@wzzd.com",
