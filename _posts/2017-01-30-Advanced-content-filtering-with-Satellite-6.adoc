@@ -10,5 +10,6 @@ If you are ready for a deeper dive into content filtering, then this week's vide
 * in what cases it does not,
 * filtering errata vs. filtering packages
 
-Ready? Jump in, right here: https://www.youtube.com/watch?v=p-t4WNctFyI
+Ready? Jump in (and subscribe!) by link:https://www.youtube.com/watch?v=p-t4WNctFyI[clicking right here]:, or watch inline below:
 
+video::p-t4WNctFyI[youtube]
