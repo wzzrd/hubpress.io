@@ -1,0 +1,14 @@
+= Advanced content filtering with Satellite 6
+:hp-tags: youtube, satellite6, content-views
+
+Today's video is about advanced content filtering in Satellite 6. As you probably know, Satellite 6 allows you to filter any repositories it serves out to your clients. These filtered repositories we call 'content views'. If you are unfamiliar with that, I suggest you go take a look at link:https://www.youtube.com/watch?v=pQp4LqBpaKg[last week's video], that introduces content views and some related concepts.
+
+If you are ready for a deeper dive into content filtering, then this week's video is exactly right for you! As a short preview, this week, I'm talking about:
+
+* the difference between include and exclude filters,
+* in what cases it makes sense to combine include and exclude filters,
+* in what cases it does not
+* filtering errata vs. filtering packages
+
+Ready? Jump in, right here: https://www.youtube.com/watch?v=p-t4WNctFyI
+
