@@ -1,6 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 30 Jan 2017 13:35:22 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Introducing a new blog!]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 30 Jan 2017 13:44:54 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Introducing a new blog!]]></title><description><![CDATA[<div class="paragraph">
 <p>With my recently launched Youtube channel - 100 things to do with Red Hat Management products - I felt that it would be useful to have a blog. A place where I could announce new videos, add some additional explanation to those videos, link to extra content, etc.</p>
 </div>
 <div class="paragraph">
 <p>To be honest, I&#8217;m not completely sure that I&#8217;ve found what I&#8217;m looking for with this Hubpress.io thingy, but it looks good enough for now.</p>
-</div>]]></description><link>http://100things.wzzrd.com/2017/01/30/Introducing-a-new-blog.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2017/01/30/Introducing-a-new-blog.html</guid><category><![CDATA[Intro]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Mon, 30 Jan 2017 00:00:00 GMT</pubDate></item></channel></rss>
+</div>]]></description><link>http://100things.wzzrd.com/2017/01/30/Introducing-a-new-blog.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2017/01/30/Introducing-a-new-blog.html</guid><category><![CDATA[Intro]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Mon, 30 Jan 2017 00:00:00 GMT</pubDate></item><item><title><![CDATA[Advanced content filtering with Satellite 6]]></title><description><![CDATA[<div class="paragraph">
+<p>Today&#8217;s video is about advanced content filtering in Satellite 6. As you probably know, Satellite 6 allows you to filter any repositories it serves out to your clients. These filtered repositories we call 'content views'. If you are unfamiliar with that, I suggest you go take a look at <a href="https://www.youtube.com/watch?v=pQp4LqBpaKg">last week&#8217;s video</a>, that introduces content views and some related concepts.</p>
+</div>
+<div class="paragraph">
+<p>If you are ready for a deeper dive into content filtering, then this week&#8217;s video is exactly right for you! As a short preview, this week, I&#8217;m talking about:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the difference between include and exclude filters,</p>
+</li>
+<li>
+<p>in what cases it makes sense to combine include and exclude filters,</p>
+</li>
+<li>
+<p>in what cases it does not,</p>
+</li>
+<li>
+<p>filtering errata vs. filtering packages</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Ready? Jump in (and subscribe!) by <a href="https://www.youtube.com/watch?v=p-t4WNctFyI">clicking right here</a>:, or watch inline below:</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<iframe src="https://www.youtube.com/embed/p-t4WNctFyI?rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>]]></description><link>http://100things.wzzrd.com/2017/01/30/Advanced-content-filtering-with-Satellite-6.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2017/01/30/Advanced-content-filtering-with-Satellite-6.html</guid><category><![CDATA[youtube]]></category><category><![CDATA[ satellite6]]></category><category><![CDATA[ content-views]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Mon, 30 Jan 2017 00:00:00 GMT</pubDate></item></channel></rss>
