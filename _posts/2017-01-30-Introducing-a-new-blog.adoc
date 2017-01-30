@@ -1,0 +1,6 @@
+= Introducing a new blog!
+:hp-tags: Intro
+
+With my recently launched Youtube channel - 100 things to do with Red Hat Management products - I felt that it would be useful to have a blog. A place where I could announce new videos, add some additional explanation to those videos, link to extra content, etc. 
+
+To be honest, I'm not completely sure that I've found what I'm looking for with this Hubpress.io thingy, but it looks good enough for now.
