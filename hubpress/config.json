@@ -5,7 +5,9 @@
     "branch": "gh-pages",
     "cname": "100things.wzzrd.com"
   },
-  "site": {},
+  "site": {
+    "title": "100 things to do with Red Hat Management Products"
+  },
   "socialnetwork": {
     "linkedin": "https://nl.linkedin.com/in/mburgerh"
   },
