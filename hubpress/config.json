@@ -13,8 +13,11 @@
     "googleAnalytics": "UA-1886096-11"
   },
   "socialnetwork": {
+    "email": "maxim+blog@wzzd.com",
+    "twitter": "https://twitter.com/MaximBurgerhout",
     "googleplus": "https://plus.google.com/+MaximBurgerhout",
-    "linkedin": "https://nl.linkedin.com/in/mburgerh"
+    "linkedin": "https://nl.linkedin.com/in/mburgerh",
+    "github": "https://github.com/wzzrd"
   },
   "theme": {
     "name": "casper"
