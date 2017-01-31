@@ -1,7 +1,7 @@
 = Video: Updating your Satellite 6 system
 :hp-tags: youtube, satellite6, updates
 
-The other day, I was talking to a customer about Satellite updates regarding the recently released Satellite 6.2.7 update. He and his co-workers were a little anxious about updating their Satellite server, as it is a quite vital piece of their infrastructure.
+The other day, I was talking to a customer about Satellite updates regarding the recently released link:https://access.redhat.com/blogs/1169563/posts/2890071[Satellite 6.2.7 update]. He and his co-workers were a little anxious about updating their Satellite server, as it is a quite vital piece of their infrastructure.
 
 I explained the simple upgrade procedure and as they ran through it, they quickly saw that everything went smoothly. Within a couple of minutes they were running on a new versin of Satellite! :)
 
