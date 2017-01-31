@@ -11,4 +11,4 @@ This is a really short one - as I hope to have more - that walks you quickly thr
 2. installing the updated packages
 3. making sure any database migrations and mandatory configuration file changes are applied
 
-The video below will take you through these steps and make sure you are prepared for your next Satellite 6 update! :)
+The video below will take you through these steps and make sure you are prepared for your next Satellite 6 update! :) Please subscribe to the Youtube channel to be informed of future videos!
