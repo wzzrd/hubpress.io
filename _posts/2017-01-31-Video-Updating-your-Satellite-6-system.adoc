@@ -1,14 +1,17 @@
 = Video: Updating your Satellite 6 system
 :hp-tags: youtube, satellite6, updates
 
-Recently, I was talking to a customer about Satellite updates. We have released quite a few over the last six months, and he and his co-workers were a little anxious about updating their Satellite each time, as it is a vital piece of their infrastructure.
+The other day, I was talking to a customer about Satellite updates regarding the recently released Satellite 6.2.7 update. He and his co-workers were a little anxious about updating their Satellite server, as it is a quite vital piece of their infrastructure.
 
-As we discussed the fact that updating a Satellite is actually a really simple procedure, it occured to me that it would make sense to pause the video series about content views for a bit. Instead of a content view video, I'm going to dedicate one video to showing the simple steps of safely and correctly updating a Satellite server. 
+I explained the simple upgrade procedure and as they ran through it, they quickly saw that everything went smoothly. Within a couple of minutes they were running on a new versin of Satellite! :)
+
+It then occured to me though, that it would make sense to pause the video series about content views for a bit. Instead of a content view video, I'm doing an extra video on the simple steps of safely and correctly updating a Satellite server.
 
 This is a really short one - as I hope to have more - that walks you quickly through the steps of updating a Satellite 6 system:
 
-1. identifying that there is an update outstanding
+1. identifying that there is an update outstanding (always read the documentation about released updates!)
 2. installing the updated packages
 3. making sure any database migrations and mandatory configuration file changes are applied
 
 The video below will take you through these steps and make sure you are prepared for your next Satellite 6 update! :) Please subscribe to the Youtube channel to be informed of future videos!
+
