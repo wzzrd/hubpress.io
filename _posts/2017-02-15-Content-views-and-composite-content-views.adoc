@@ -1,0 +1,14 @@
+= Content views and composite content views
+:hp-tags: satellite6, content views
+
+We have been talking about content views in the previous posts, but to be sure we are all on the same page: a content view is a versioned, filtered set of repositories that you can promote between lifecycle environments. We have been talking about 'normal' content views up until now, but Satellite 6 also knows the concept of a composite content view.
+
+A composite content view allows you to bundle other content views, rather than individual repositories. By using composite content views to attach to your systems, you can create re-usable building blocks. You could, for example, create a building block (a component content view) for the base operating system, and combine those  different application content views into composite content views. You might want to do this if your application content views follow different lifecycle paths, or move slower (or faster) than your base operating system content view through the same lifecycle path.
+
+Another use case would be if the application content view is maintained by a different department. By using composite content views in that case, the team application administrators or developers can manage the application content view, and the Linux admin team can manage the base operating system content view. Every once in a while - depending on requirements - the two component CVs are bundled together into a CCV, published and promoted.
+
+You then use activation keys to register new systems to the CCV and use the provisions in that activation key to grant access to specific repositories in the CCV.
+
+I created this episode because people often ask what the difference is between CVs and CCVs and if they should always use CCVs. The answer to that last question is 'no'. Do *not* use CCVs just because you can. Use CCVs because you are trying to solve one of the use cases mentioned above, or one of the use cases mentioned in the https://access.redhat.com/articles/1585273[10 Steps to Build an SOE with Satellite 6] document. For those cases, CCVs are perfect :)
+
+video::BJjAWME1TlQ[youtube]
