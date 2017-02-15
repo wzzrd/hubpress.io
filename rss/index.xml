@@ -1,4 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Wed, 15 Feb 2017 12:07:48 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[New video: Updating your Satellite 6 system]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Wed, 15 Feb 2017 12:10:01 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Content views and composite content views]]></title><description><![CDATA[<div class="paragraph">
+<p>We have been talking about content views in the previous posts, but to be sure we are all on the same page: a content view is a versioned, filtered set of repositories that you can promote between lifecycle environments. We have been talking about 'normal' content views, or CV, up until now, but Satellite 6 also knows the concept of a <em>composite content view</em>, or CCV.</p>
+</div>
+<div class="paragraph">
+<p>A composite content view allows you to bundle other content views, rather than individual repositories. The best approach to this is to start creating re-usable building blocks (component content views) to bundle in CCVs. You could, for example, create a building block for the base operating system, and combine that with different application content views into composite content views.</p>
+</div>
+<div class="paragraph">
+<p>You might want to do this if your application content views follow different lifecycle paths, or move slower (or faster) than your base operating system content view through the same lifecycle path.</p>
+</div>
+<div class="paragraph">
+<p>Another use case would be if the application content view is maintained by a different department. By using composite content views in that case, the team of application administrators or developers can manage the application content view, and the Linux administrator team can manage the base operating system content view. Every once in a while - depending on requirements - the two component CVs are bundled together into a CCV, and then published and promoted.</p>
+</div>
+<div class="paragraph">
+<p>You then use activation keys to register new systems to the CCV and use the provisions in that activation key to grant access to specific repositories in the CCV. (This will be the topic of a later video.)</p>
+</div>
+<div class="paragraph">
+<p>I created this episode because people often ask what the difference is between CVs and CCVs, and if they should always use CCVs. I want to be clear about that last question. The answer to it is a distinct <em>no</em>. Do <em>not</em> use CCVs just because you can. <em>Do</em> use CCVs because you are trying to solve one of the use cases mentioned above, or one of the use cases mentioned in the <a href="https://access.redhat.com/articles/1585273">10 Steps to Build an SOE with Satellite 6</a> document. For those cases, CCVs are perfect :)</p>
+</div>
+<div class="paragraph">
+<p>Hope you enjoy the video! Please subscribe and leave any comments here, or on YouTube, whichever you prefer!</p>
+</div>
+<div class="paragraph">
+<p>Until next time!</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<iframe src="https://www.youtube.com/embed/BJjAWME1TlQ?rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>]]></description><link>http://100things.wzzrd.com/2017/02/15/Content-views-and-composite-content-views.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2017/02/15/Content-views-and-composite-content-views.html</guid><category><![CDATA[satellite6]]></category><category><![CDATA[ content views]]></category><category><![CDATA[ youtube]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Wed, 15 Feb 2017 00:00:00 GMT</pubDate></item><item><title><![CDATA[New video: Updating your Satellite 6 system]]></title><description><![CDATA[<div class="paragraph">
 <p>The other day, I was talking to a customer about Satellite updates regarding the recently released <a href="https://access.redhat.com/blogs/1169563/posts/2890071">Satellite 6.2.7 update</a>. He and his co-workers were a little anxious about updating their Satellite server, as it is a quite vital piece of their infrastructure.</p>
 </div>
 <div class="paragraph">
