@@ -1,6 +1,8 @@
 = Content views and composite content views
 :hp-tags: satellite6, content views, youtube
 
+image::https://raw.githubusercontent.com/wzzrd/hubpress.io/gh-pages/images/boxes.png[Whiteboarding, 480, 270,] 
+
 We have been talking about content views in the previous posts, but to be sure we are all on the same page: a content view is a versioned, filtered set of repositories that you can promote between lifecycle environments. We have been talking about 'normal' content views, or CV, up until now, but Satellite 6 also knows the concept of a _composite content view_, or CCV.
 
 A composite content view allows you to bundle other content views, rather than individual repositories. The best approach to this is to start creating re-usable building blocks (component content views) to bundle in CCVs. You could, for example, create a building block for the base operating system, and combine that with different application content views into composite content views. 
