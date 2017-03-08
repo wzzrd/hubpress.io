@@ -1,4 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Wed, 15 Feb 2017 12:35:13 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Content views and composite content views]]></title><description><![CDATA[<div class="imageblock">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Wed, 08 Mar 2017 12:18:29 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Using a dedicated Puppet content view]]></title><description><![CDATA[<div class="paragraph">
+<p>After I <a href="https://www.youtube.com/watch?v=04m6SlvzvKY&amp;list=PLTJ5vj7osiGMHEi9SQvoyXD2vNL_v8WFv">presented at Summit</a> last Summer, I frequently get questions around how to setup a dedicated Puppet content view in Satellite 6.</p>
+</div>
+<div class="paragraph">
+<p>Using a dedicated Puppet content view can be useful for your organization if you are doing intensive development on your Puppet code base. This usually applies to organizations that are just getting started implementing Puppet: you are making many changes to the Puppet code base all the time, and if you stick those modules in a CV with 35,000 RPMs in there as well, publishing a new version will take more time than  you probably want to spend waiting. (Apologies for the long sentence there.)</p>
+</div>
+<div class="paragraph">
+<p>If you split out your Puppet modules into a dedicated content view, you get quick publishing and promotion of that content view, speeding up the pace of making changes to your Puppet code base.</p>
+</div>
+<div class="paragraph">
+<p>The downside is, that you are breaking the bond between RPMs and Puppet content views. This means that you can no longer be sure that a specific version of a content view with RPMs is tested with a certain set of Puppet modules. How important that is for your infrastructure, I cannot assess, but I have learned it varies from customer to customer.</p>
+</div>
+<div class="paragraph">
+<p>Anyway, I created another screencast to explain the concept of a dedicated Puppet content view, uploaded it to Youtube and I hope you enjoy.</p>
+</div>
+<div class="paragraph">
+<p>Please make sure you subscribe to the channel and leave comments and / or like the video. Your feedback is important to me and makes it clear whether or not I&#8217;m helping people by making these videos.</p>
+</div>
+<div class="paragraph">
+<p>Next time around, I&#8217;ll start introducing other Red Hat management products, starting with Ansible Tower.</p>
+</div>
+<div class="paragraph">
+<p>Until then! Cheers!</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<iframe src="https://www.youtube.com/embed/Y6xDU-WMFFY?rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>]]></description><link>http://100things.wzzrd.com/2017/03/08/How-to-use-a-dedicated-Puppet-content-view-in-Satellite-6.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2017/03/08/How-to-use-a-dedicated-Puppet-content-view-in-Satellite-6.html</guid><category><![CDATA[youtube]]></category><category><![CDATA[ satellite6]]></category><category><![CDATA[ content views]]></category><category><![CDATA[ puppet]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Wed, 08 Mar 2017 00:00:00 GMT</pubDate></item><item><title><![CDATA[Content views and composite content views]]></title><description><![CDATA[<div class="imageblock">
 <div class="content">
 <img src="https://raw.githubusercontent.com/wzzrd/hubpress.io/gh-pages/images/boxes.png" alt="Whiteboarding" width="480" height="270">
 </div>
@@ -49,6 +77,9 @@
 <p>identifying that there is an update outstanding (always read the documentation about released updates!)</p>
 </li>
 <li>
+<p>backup your Satellite server (this is a step I do not show in the video, for obvious reasons)</p>
+</li>
+<li>
 <p>installing the updated packages</p>
 </li>
 <li>
@@ -57,7 +88,12 @@
 </ol>
 </div>
 <div class="paragraph">
-<p>The video below will take you through these steps and make sure you are prepared for your next Satellite 6 update! :) Please subscribe to the Youtube channel to be informed of future videos!</p>
+<p>The video below will take you through these steps and make sure you are prepared for your next Satellite 6 update! :) Please subscribe to the <a href="https://www.youtube.com/channel/UC6AybwWpjM2-JCBk-63w5iQ">Youtube channel</a> to be informed of future videos!</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<iframe src="https://www.youtube.com/embed/9U2PMJvXPQU?rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
 </div>]]></description><link>http://100things.wzzrd.com/2017/01/31/New-video-Updating-your-Satellite-6-system.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2017/01/31/New-video-Updating-your-Satellite-6-system.html</guid><category><![CDATA[youtube]]></category><category><![CDATA[ satellite6]]></category><category><![CDATA[ updates]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Tue, 31 Jan 2017 00:00:00 GMT</pubDate></item><item><title><![CDATA[Introducing a new blog!]]></title><description><![CDATA[<div class="paragraph">
 <p>With my recently launched Youtube channel - 100 things to do with Red Hat Management products - I felt that it would be useful to have a blog. A place where I could announce new videos, add some additional explanation to those videos, link to extra content, etc.</p>
 </div>
