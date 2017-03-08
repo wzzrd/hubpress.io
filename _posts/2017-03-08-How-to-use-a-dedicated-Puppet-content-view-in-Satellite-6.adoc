@@ -19,4 +19,4 @@ Next time around, I'll start introducing other Red Hat management products, star
 
 Until then! Cheers!
 
-video:youtube:Y6xDU-WMFFY
+video::Y6xDU-WMFFY[youtube]
