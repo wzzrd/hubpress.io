@@ -1,0 +1,22 @@
+= Using a dedicated Puppet content view
+:published_at: 2017-03-08
+:hp-tags: youtube, satellite6, content views, puppet
+:hp-alt-title: How to use a dedicated Puppet content view in Satellite 6
+
+After I https://www.youtube.com/watch?v=04m6SlvzvKY&list=PLTJ5vj7osiGMHEi9SQvoyXD2vNL_v8WFv[presented at Summit] last Summer, I frequently get questions around how to setup a dedicated Puppet content view in Satellite 6.
+
+Using a dedicated Puppet content view can be useful for your organization if you are doing intensive development on your Puppet code base. This usually applies to organizations that are just getting started implementing Puppet: you are making many changes to the Puppet code base all the time, and if you stick those modules in a CV with 35,000 RPMs in there as well, publishing a new version will take more time than  you probably want to spend waiting. (Apologies for the long sentence there.)
+
+If you split out your Puppet modules into a dedicated content view, you get quick publishing and promotion of that content view, speeding up the pace of making changes to your Puppet code base.
+
+The downside is, that you are breaking the bond between RPMs and Puppet content views. This means that you can no longer be sure that a specific version of a content view with RPMs is tested with a certain set of Puppet modules. How important that is for your infrastructure, I cannot assess, but I have learned it varies from customer to customer.
+
+Anyway, I created another screencast to explain the concept of a dedicated Puppet content view, uploaded it to Youtube and I hope you enjoy. 
+
+Please make sure you subscribe to the channel and leave comments and / or like the video. Your feedback is important to me and makes it clear whether or not I'm helping people by making these videos.
+
+Next time around, I'll start introducing other Red Hat management products, starting with Ansible Tower.
+
+Until then! Cheers!
+
+video:youtube:Y6xDU-WMFFY
