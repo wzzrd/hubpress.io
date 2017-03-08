@@ -3,8 +3,6 @@
 :hp-tags: youtube, satellite6, content views, puppet
 :hp-alt-title: How to use a dedicated Puppet content view in Satellite 6
 
-
-
 After I https://www.youtube.com/watch?v=04m6SlvzvKY&list=PLTJ5vj7osiGMHEi9SQvoyXD2vNL_v8WFv[presented at Summit] last Summer, I starting getting frequent questions around how to setup a dedicated Puppet content view in Satellite 6.
 
 Using a dedicated Puppet content view can be useful for your organization if you are doing intensive development on your Puppet code base. This usually applies to organizations that are just getting started implementing Puppet: you are making many changes to the Puppet code base all the time, and if you stick those modules in a CV with 35,000 RPMs in there as well, publishing a new version will take more time than  you probably want to spend waiting. (Apologies for the long sentence there.)
