@@ -12,8 +12,7 @@ Sounds good? That's because it is! And it gets better: setting up a Tower cluste
 
 As an example, I have set up a Tower cluster on three nodes: tower01.nontoonyt.lan, tower02.nontoonyt.lan and tower03.nontoonyt.lan. The database will reside on towerdb.nontoonyt.lan. By configuring the inventory in a specific - and quite simple - way, the Tower installation playbooks will build the whole cluster for me. 
 
-image:
-
+image::https://raw.githubusercontent.com/wzzrd/hubpress.io/gh-pages/images/ansible-tower-cluster.png[Tower Cluster Topology, 460, 650,]
 
 The below snippet is an edited version of the special inventory file we ship in the ansible-tower-setup tarball, called "inventory_cluster". 
 
