@@ -1,6 +1,6 @@
 = Building a highly available Ansible Tower cluster
 :published_at: 2017-03-15
-:hp-tags: ansible, ansible tower, ansible tower cluster
+:hp-tags: ansible, ansible tower, ansible tower cluster, youtube
 
 With the release of Ansible Tower 3.1 a short while back, it became possible to setup Ansible Tower in a highly available, active-active topology. You do this by setting up multiple Tower nodes that talk to a shared PostgreSQL database on a separate node. This database can be setup and managed by the Tower installation playbook, or you can manage it yourself.
 
