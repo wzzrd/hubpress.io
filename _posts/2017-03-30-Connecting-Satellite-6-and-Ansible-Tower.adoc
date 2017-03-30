@@ -25,6 +25,7 @@ So what you need to do to make this work, is go to your Satellite and edit the p
 ----
 # This is RHEL7 specific code, as it uses systemctl, replace with 
 # chkconfig or an @boot cron if you run RHEL5 or RHEL6
+
 <% if @host.params['ansible_enabled'] == 'true' %>  
 cat > /etc/systemd/system/ansible-callback.service << EOF  
 <%= snippet 'ansible_callback_service' %>  
@@ -55,7 +56,16 @@ WantedBy=multi-user.target
 
 (I prefer to use a snippet for this for some more flexibility.)
 
-If you've done the above, you can assign the following variables to hosts or hostgroups
+If you've done the above, you can assign the following variables to hosts or hostgroups:
+
+- `ansible_enabled`: must be 'true' to enable provisioning callbacks to begin with
+- `JOB_TEMPLATE_ID`: the ID of the job template associated with the provisioning callback URL
+- `HOST_CONFIG_KEY`: the variables that needs to be POSTed to the provisioning callback URL
+
+Make sure the inventory associated with this job template you are configuring provisioning callbacks for has 'Update on Launch' enabled.
+
+Happy configuring!
+
 
 
 
