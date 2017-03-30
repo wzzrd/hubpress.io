@@ -19,7 +19,43 @@ Tower will then refresh the inventory (you need to enable that on the inventory 
 
 Because this is most useful during deployment of new systems, and I didn't want to make the video too long, I decided to explain this bit here in the blog and refer to this blog in the video.
 
+So what you need to do to make this work, is go to your Satellite and edit the provisioning template called "Satellite Kickstart Default". To this template, you add a little snippet near the end (preferably after the Puppet snippet, and before the 'Informing Satellite that we are built' part), that reads as follows:
 
+[source]
+----
+# This is RHEL7 specific code, as it uses systemctl, replace with 
+# chkconfig or an @boot cron if you run RHEL5 or RHEL6
+<% if @host.params['ansible_enabled'] == 'true' %>  
+cat > /etc/systemd/system/ansible-callback.service << EOF  
+<%= snippet 'ansible_callback_service' %>  
+EOF  
+  
+# Runs during first boot, removes itself  
+/usr/bin/systemctl enable ansible-callback  
+<% end -%>  
+----
+
+Then you create a new provisioning template, call it 'ansible_callback_service', and make it a snippet. Add the following code to it. Update the hostname below to match your environment.
+
+[source,shell]
+----
+[Unit]
+Description=Provisioning callback to Ansible
+Wants=network-online.target
+After=network-online.target
+ 
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/curl -k -s --data "host_config_key=$HOST_CONFIG_KEY" https://$YOUR_TOWER_HOSTNAME/api/v1/job_templates/$JOB_TEMPLATE_ID/callback/
+ExecStartPost=/usr/bin/systemctl disable ansible-callback
+ 
+[Install]
+WantedBy=multi-user.target
+----
+
+(I prefer to use a snippet for this for some more flexibility.)
+
+If you've done the above, you can assign the following variables to hosts or hostgroups
 
 
 
