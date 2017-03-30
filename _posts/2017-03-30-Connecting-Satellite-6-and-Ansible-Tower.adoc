@@ -1,5 +1,4 @@
 = Connecting Satellite 6 and Ansible Tower
-:hp-image: https://raw.githubusercontent.com/wzzrd/hubpress.io/gh-pages/images/imported_system.png
 :published_at: 2017-03-30
 :hp-tags: ansible, ansible tower, satellite6, youtube
 
@@ -12,6 +11,8 @@ First of all, if you share inventory data, you share hostnames and IP addresses 
 Some of that information is available as variables at the system level, like the amount of outstanding errata and the name of the operating system. 
 
 Other things are used directly in Tower to group systems by. As an example, your hostgroups in Satellite will directly transfor into groups of systems in Tower as well, and this goes for lifecycle environments, content views and Puppet environments as well. That already should make your life a lot easier :)
+
+image::https://raw.githubusercontent.com/wzzrd/hubpress.io/gh-pages/images/imported_system.png[Imported system, 740, 265]
 
 == Provisioning callbacks
 
