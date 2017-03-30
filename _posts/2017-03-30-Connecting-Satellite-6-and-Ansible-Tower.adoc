@@ -47,7 +47,7 @@ After=network-online.target
  
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/curl -k -s --data "host_config_key=$HOST_CONFIG_KEY" https://$YOUR_TOWER_HOSTNAME/api/v1/job_templates/$JOB_TEMPLATE_ID/callback/
+ExecStart=/usr/bin/curl -k -s --data "host_config_key=<%= @host.params['ansible_host_config_key'] -%>" https://tower310.deployment6.lan/api/v1/job_templates/<%= @host.params['ansible_job_template_id'] -%>/callback/
 ExecStartPost=/usr/bin/systemctl disable ansible-callback
  
 [Install]
@@ -63,6 +63,8 @@ If you've done the above, you can assign the following variables to hosts or hos
 - `HOST_CONFIG_KEY`: the variables that needs to be POSTed to the provisioning callback URL
 
 Make sure the inventory associated with this job template you are configuring provisioning callbacks for has 'Update on Launch' enabled.
+
+What the above will do is deploy a small systemd service on your new system (you can also adapt this to be a @boot cronjob, or something similar). During first boot, systemd will run a single cURL command and then disable the service again, so it'll only run once at the very first boot.
 
 Happy configuring!
 
