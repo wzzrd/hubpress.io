@@ -1,0 +1,38 @@
+= Connecting Satellite 6 and Ansible Tower
+// :hp-image:
+:published_at: 2017-03-30
+:hp-tags: ansible, ansible tower, satellite6, youtube
+
+Today I want to talk about connecting Satellite 6 and Ansible Tower. There are two main benefits you can get right now from connecting Satellite 6 and Ansible Tower if you use both.
+
+First of all, if you share inventory data, you share hostnames and IP addresses of systems between Satellite 6 and Ansible Tower. This is valuable by itself, because who wants to keep track of systems in two different places, right? But apart from hostnames and IP addresses, Satellite 6 will offer all other information it has on those systems to Tower as well. This means you get access to what lifecycle environment a system is in, what content view it uses, and many more things. 
+
+Some of that information is available as variables at the system level, like the amount of outstanding errata and the name of the operating system. 
+
+Other things are used directly in Tower to group systems by. As an example, your hostgroups in Satellite will directly transfor into groups of systems in Tower as well, and this goes for lifecycle environments, content views and Puppet environments as well. That already should make your life a lot easier :)
+
+The second things you can more easily achieve by connecting Ansible Tower to Satellite 6, is the use of *provisioning callbacks*.
+
+A provisioning callback is a special URL on the Tower server, that can be called by a client node to invoke a playbook run on itself. In order to successfully trigger a playbook run, a client node has to POST a special variable to the URL.
+
+Tower will then refresh the inventory (you need to enable that on the inventory manually, by the way) and execute the Job Template associated with the provisioning callback.
+
+Because this is most useful during deployment of new systems, and I didn't want to make the video too long, I decided to explain this bit here in the blog and refer to this blog in the video.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
