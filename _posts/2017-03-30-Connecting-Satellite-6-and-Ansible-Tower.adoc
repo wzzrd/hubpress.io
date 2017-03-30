@@ -1,5 +1,5 @@
 = Connecting Satellite 6 and Ansible Tower
-// :hp-image:
+:hp-image: https://raw.githubusercontent.com/wzzrd/hubpress.io/gh-pages/images/ansible-tower-cluster.png
 :published_at: 2017-03-30
 :hp-tags: ansible, ansible tower, satellite6, youtube
 
