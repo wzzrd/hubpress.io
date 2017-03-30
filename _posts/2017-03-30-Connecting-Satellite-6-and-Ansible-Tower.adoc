@@ -75,6 +75,13 @@ What the above will do is deploy a small systemd service on your new system. Dur
 
 You can also adapt this service to be a @boot cronjob, or traditional initscript as well, of course. 
 
+=== Update: here's the video
+
+Duh. Forgot to include that at first :/
+
+video::SXhfgJjeaGc[youtube]
+
+
 Happy configuring!
 
 
