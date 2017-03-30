@@ -1,5 +1,5 @@
 = Connecting Satellite 6 and Ansible Tower
-:hp-image: https://raw.githubusercontent.com/wzzrd/hubpress.io/gh-pages/images/ansible-tower-cluster.png
+:hp-image: https://raw.githubusercontent.com/wzzrd/hubpress.io/gh-pages/images/imported_system.png
 :published_at: 2017-03-30
 :hp-tags: ansible, ansible tower, satellite6, youtube
 
@@ -25,7 +25,7 @@ Tower will then refresh the inventory (you need to enable that on the inventory 
 
 So what you need to do to make this work, is go to your Satellite and edit the provisioning template called "Satellite Kickstart Default". To this template, you add a little snippet near the end (preferably after the Puppet snippet, and before the 'Informing Satellite that we are built' part), that reads as follows:
 
-[source]
+[source,erb]
 ----
 # This is RHEL7 specific code, as it uses systemctl, replace with 
 # chkconfig or an @boot cron if you run RHEL5 or RHEL6
@@ -42,7 +42,7 @@ EOF
 
 Then you create a new provisioning template, call it 'ansible_callback_service', and make it a snippet. Add the following code to it. Update the hostname below to match your environment.
 
-[source,shell]
+[source,ini]
 ----
 [Unit]
 Description=Provisioning callback to Ansible
