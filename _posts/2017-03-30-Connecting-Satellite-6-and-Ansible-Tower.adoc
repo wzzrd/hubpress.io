@@ -1,0 +1,94 @@
+= Connecting Satellite 6 and Ansible Tower
+:hp-image: https://raw.githubusercontent.com/wzzrd/hubpress.io/gh-pages/images/ansible-tower-cluster.png
+:published_at: 2017-03-30
+:hp-tags: ansible, ansible tower, satellite6, youtube
+
+Today I want to talk about connecting Satellite 6 and Ansible Tower. There are two main benefits you can get right now from connecting Satellite 6 and Ansible Tower if you use both.
+
+== Sharing inventory data
+
+First of all, if you share inventory data, you share hostnames and IP addresses of systems between Satellite 6 and Ansible Tower. This is valuable by itself, because who wants to keep track of systems in two different places, right? But apart from hostnames and IP addresses, Satellite 6 will offer all other information it has on those systems to Tower as well. This means you get access to what lifecycle environment a system is in, what content view it uses, and many more things. 
+
+Some of that information is available as variables at the system level, like the amount of outstanding errata and the name of the operating system. 
+
+Other things are used directly in Tower to group systems by. As an example, your hostgroups in Satellite will directly transfor into groups of systems in Tower as well, and this goes for lifecycle environments, content views and Puppet environments as well. That already should make your life a lot easier :)
+
+== Provisioning callbacks
+
+The second things you can more easily achieve by connecting Ansible Tower to Satellite 6, is the use of *provisioning callbacks*.
+
+A provisioning callback is a special URL on the Tower server, that can be called by a client node to invoke a playbook run on itself. In order to successfully trigger a playbook run, a client node has to POST a special variable to the URL.
+
+Tower will then refresh the inventory (you need to enable that on the inventory manually, by the way) and execute the Job Template associated with the provisioning callback.
+
+=== Some code to help you get started
+
+So what you need to do to make this work, is go to your Satellite and edit the provisioning template called "Satellite Kickstart Default". To this template, you add a little snippet near the end (preferably after the Puppet snippet, and before the 'Informing Satellite that we are built' part), that reads as follows:
+
+[source]
+----
+# This is RHEL7 specific code, as it uses systemctl, replace with 
+# chkconfig or an @boot cron if you run RHEL5 or RHEL6
+
+<% if @host.params['ansible_enabled'] == 'true' %>  
+cat > /etc/systemd/system/ansible-callback.service << EOF  
+<%= snippet 'ansible_callback_service' %>  
+EOF  
+  
+# Runs during first boot, removes itself  
+/usr/bin/systemctl enable ansible-callback  
+<% end -%>  
+----
+
+Then you create a new provisioning template, call it 'ansible_callback_service', and make it a snippet. Add the following code to it. Update the hostname below to match your environment.
+
+[source,shell]
+----
+[Unit]
+Description=Provisioning callback to Ansible
+Wants=network-online.target
+After=network-online.target
+ 
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/curl -k -s --data "host_config_key=<%= @host.params['ansible_host_config_key'] -%>" https://tower310.deployment6.lan/api/v1/job_templates/<%= @host.params['ansible_job_template_id'] -%>/callback/
+ExecStartPost=/usr/bin/systemctl disable ansible-callback
+ 
+[Install]
+WantedBy=multi-user.target
+----
+
+(I prefer to use a snippet for this for some more flexibility.)
+
+If you've done the above, you can assign the following variables to hosts or hostgroups:
+
+- `ansible_enabled`: must be 'true' to enable provisioning callbacks to begin with
+- `ansible_job_template_id`: the ID of the job template associated with the provisioning callback URL
+- `ansible_host_config_key`: the variables that needs to be POSTed to the provisioning callback URL
+
+Make sure the inventory associated with this job template you are configuring provisioning callbacks for has 'Update on Launch' enabled.
+
+=== systemd service, or @boot cronjob, or init script
+
+What the above will do is deploy a small systemd service on your new system. During first boot, this service will make systemd run a single cURL command and then disable the service again, so it'll only run once at the very first boot.
+
+You can also adapt this service to be a @boot cronjob, or traditional initscript as well, of course. 
+
+Happy configuring!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

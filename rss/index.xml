@@ -1,4 +1,180 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 13 Mar 2017 13:54:41 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Using a dedicated Puppet content view]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Thu, 30 Mar 2017 14:45:55 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Connecting Satellite 6 and Ansible Tower]]></title><description><![CDATA[<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Today I want to talk about connecting Satellite 6 and Ansible Tower. There are two main benefits you can get right now from connecting Satellite 6 and Ansible Tower if you use both.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sharing_inventory_data">Sharing inventory data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First of all, if you share inventory data, you share hostnames and IP addresses of systems between Satellite 6 and Ansible Tower. This is valuable by itself, because who wants to keep track of systems in two different places, right? But apart from hostnames and IP addresses, Satellite 6 will offer all other information it has on those systems to Tower as well. This means you get access to what lifecycle environment a system is in, what content view it uses, and many more things.</p>
+</div>
+<div class="paragraph">
+<p>Some of that information is available as variables at the system level, like the amount of outstanding errata and the name of the operating system.</p>
+</div>
+<div class="paragraph">
+<p>Other things are used directly in Tower to group systems by. As an example, your hostgroups in Satellite will directly transfor into groups of systems in Tower as well, and this goes for lifecycle environments, content views and Puppet environments as well. That already should make your life a lot easier :)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_provisioning_callbacks">Provisioning callbacks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The second things you can more easily achieve by connecting Ansible Tower to Satellite 6, is the use of <strong>provisioning callbacks</strong>.</p>
+</div>
+<div class="paragraph">
+<p>A provisioning callback is a special URL on the Tower server, that can be called by a client node to invoke a playbook run on itself. In order to successfully trigger a playbook run, a client node has to POST a special variable to the URL.</p>
+</div>
+<div class="paragraph">
+<p>Tower will then refresh the inventory (you need to enable that on the inventory manually, by the way) and execute the Job Template associated with the provisioning callback.</p>
+</div>
+<div class="sect2">
+<h3 id="_some_code_to_help_you_get_started">Some code to help you get started</h3>
+<div class="paragraph">
+<p>So what you need to do to make this work, is go to your Satellite and edit the provisioning template called "Satellite Kickstart Default". To this template, you add a little snippet near the end (preferably after the Puppet snippet, and before the 'Informing Satellite that we are built' part), that reads as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code># This is RHEL7 specific code, as it uses systemctl, replace with
+# chkconfig or an @boot cron if you run RHEL5 or RHEL6
+
+&lt;% if @host.params['ansible_enabled'] == 'true' %&gt;
+cat &gt; /etc/systemd/system/ansible-callback.service &lt;&lt; EOF
+&lt;%= snippet 'ansible_callback_service' %&gt;
+EOF
+
+# Runs during first boot, removes itself
+/usr/bin/systemctl enable ansible-callback
+&lt;% end -%&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then you create a new provisioning template, call it 'ansible_callback_service', and make it a snippet. Add the following code to it. Update the hostname below to match your environment.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell">[Unit]
+Description=Provisioning callback to Ansible
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/curl -k -s --data "host_config_key=&lt;%= @host.params['ansible_host_config_key'] -%&gt;" https://tower310.deployment6.lan/api/v1/job_templates/&lt;%= @host.params['ansible_job_template_id'] -%&gt;/callback/
+ExecStartPost=/usr/bin/systemctl disable ansible-callback
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(I prefer to use a snippet for this for some more flexibility.)</p>
+</div>
+<div class="paragraph">
+<p>If you&#8217;ve done the above, you can assign the following variables to hosts or hostgroups:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ansible_enabled</code>: must be 'true' to enable provisioning callbacks to begin with</p>
+</li>
+<li>
+<p><code>ansible_job_template_id</code>: the ID of the job template associated with the provisioning callback URL</p>
+</li>
+<li>
+<p><code>ansible_host_config_key</code>: the variables that needs to be POSTed to the provisioning callback URL</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Make sure the inventory associated with this job template you are configuring provisioning callbacks for has 'Update on Launch' enabled.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_systemd_service_or_boot_cronjob_or_init_script">systemd service, or @boot cronjob, or init script</h3>
+<div class="paragraph">
+<p>What the above will do is deploy a small systemd service on your new system. During first boot, this service will make systemd run a single cURL command and then disable the service again, so it&#8217;ll only run once at the very first boot.</p>
+</div>
+<div class="paragraph">
+<p>You can also adapt this service to be a @boot cronjob, or traditional initscript as well, of course.</p>
+</div>
+<div class="paragraph">
+<p>Happy configuring!</p>
+</div>
+</div>
+</div>
+</div>]]></description><link>http://100things.wzzrd.com/2017/03/30/Connecting-Satellite-6-and-Ansible-Tower.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2017/03/30/Connecting-Satellite-6-and-Ansible-Tower.html</guid><category><![CDATA[ansible]]></category><category><![CDATA[ ansible tower]]></category><category><![CDATA[ satellite6]]></category><category><![CDATA[ youtube]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Thu, 30 Mar 2017 00:00:00 GMT</pubDate></item><item><title><![CDATA[Building a highly available Ansible Tower cluster]]></title><description><![CDATA[<div class="paragraph">
+<p>With the release of Ansible Tower 3.1 a short while back, it became possible to setup Ansible Tower in a highly available, active-active topology. You do this by setting up multiple Tower nodes that talk to a shared PostgreSQL database on a separate node. This database can be setup and managed by the Tower installation playbook, or you can manage it yourself.</p>
+</div>
+<div class="paragraph">
+<p>Each of the Tower nodes will serve up the web front end, so your users can choose which Tower server they use to log into. If you change the configuration through the web UI on one node, the change is visible over all instances through the shared database. For example, uploading a Tower license file to one of the Tower instances will make it show up in all of your Tower cluster nodes.</p>
+</div>
+<div class="paragraph">
+<p>Cluster nodes keep in touch with one another for job scheduling and such through RabbitMQ.</p>
+</div>
+<div class="paragraph">
+<p>Sounds good? That&#8217;s because it is! And it gets better: setting up a Tower cluster is insanely easy!</p>
+</div>
+<div class="paragraph">
+<p>As an example, I have set up a Tower cluster on three nodes: tower01.nontoonyt.lan, tower02.nontoonyt.lan and tower03.nontoonyt.lan. The database will reside on towerdb.nontoonyt.lan. By configuring the inventory in a specific - and quite simple - way, the Tower installation playbooks will build the whole cluster for me.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://raw.githubusercontent.com/wzzrd/hubpress.io/gh-pages/images/ansible-tower-cluster.png" alt="Tower Cluster Topology" width="460" height="650">
+</div>
+</div>
+<div class="paragraph">
+<p>The below snippet is an edited version of the special inventory file we ship in the ansible-tower-setup tarball, called "inventory_cluster".</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[tower]
+tower01.nontoonyt.lan
+tower02.nontoonyt.lan
+tower03.nontoonyt.lan
+
+[database]
+towerdb.nontoonyt.lan
+
+[all:vars]
+admin_password='myPassw0rd'
+
+pg_host='towerdb.nontoonyt.lan'
+pg_port='5432'
+
+pg_database='tower'
+pg_username='tower'
+pg_password='myPassw0rd'
+
+rabbitmq_port=5672
+rabbitmq_vhost=tower
+rabbitmq_username=tower
+rabbitmq_password='myPassw0rd'
+rabbitmq_cookie=omnomnomnom
+
+# Needs to be true for fqdns and ip addresses
+rabbitmq_use_long_name=true</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To invoke setup.sh to perform a cluster installation based on that inventory file, you just run:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># ./setup.sh -i inventory_cluster</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That&#8217;s it. Hope you enjoy the new Ansible Tower cluster feature! Take a look at the Youtube screencast that goes with this blog.</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<iframe src="https://www.youtube.com/embed/t3VdUjjuv70?rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>]]></description><link>http://100things.wzzrd.com/2017/03/13/Building-a-highly-available-Ansible-Tower-cluster.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2017/03/13/Building-a-highly-available-Ansible-Tower-cluster.html</guid><category><![CDATA[ansible]]></category><category><![CDATA[ ansible tower]]></category><category><![CDATA[ ansible tower cluster]]></category><category><![CDATA[ youtube]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Mon, 13 Mar 2017 00:00:00 GMT</pubDate></item><item><title><![CDATA[Using a dedicated Puppet content view]]></title><description><![CDATA[<div class="paragraph">
 <p>After I <a href="https://www.youtube.com/watch?v=04m6SlvzvKY&amp;list=PLTJ5vj7osiGMHEi9SQvoyXD2vNL_v8WFv">presented at Summit</a> last Summer, I starting getting frequent questions around how to setup a dedicated Puppet content view in Satellite 6.</p>
 </div>
 <div class="paragraph">
