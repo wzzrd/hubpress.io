@@ -21,8 +21,6 @@ A provisioning callback is a special URL on the Tower server, that can be called
 
 Tower will then refresh the inventory (you need to enable that on the inventory manually, by the way) and execute the Job Template associated with the provisioning callback.
 
-Because this is most useful during deployment of new systems, and I didn't want to make the video too long, I decided to explain this bit here in the blog and refer to this blog in the video.
-
 === Some code to help you get started
 
 So what you need to do to make this work, is go to your Satellite and edit the provisioning template called "Satellite Kickstart Default". To this template, you add a little snippet near the end (preferably after the Puppet snippet, and before the 'Informing Satellite that we are built' part), that reads as follows:
