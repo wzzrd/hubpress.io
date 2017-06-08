@@ -1,0 +1,18 @@
+= Using virt-who with virtual datacenter subscriptions
+:published_at: 2017-06-08
+:hp-tags: virt-who, vdc, redhat, youtube, satellite6
+
+At Red Hat, one of the subscription types we offer is the "virtual datacenter subscription", or VDC. A VDC offers our customers a way to run an unlimited amount of RHEL VMs on a supported hypervisor footnote:[Supported virtualization platforms are RHV, vSphere, Hyper-V and libvirt on RHEL]. A requirement to run an unlimited amount of VMs on a hypervisor, is that the subscription management tool, Satellite 6 in most cases, knows which VMs run on which hypervisor. That is where the virt-who tool comes in.
+
+A bunch of people have been asking me to do a video about setting up virt-who. I guess that is because initially, setting up virt-who was kind of complicated: you needed a dedicated VM to run it on, there were some issues with configuring it correctly, etc.
+
+However: we have come a long way since then. Setting up virt-who is actually dead simple these days. We even have a https://access.redhat.com/labs/virtwhoconfig/[configuration helper] page on our customer portal. Just use the wizard on that page, and copy paste the resulting configuration file onto the system you want to run virt-who on. 
+
+In the video, I do a brief explanation of what virt-who is, how to install it, and how to make it work for you. It does not explain everything, because even now, it's already a 10 minute video.
+
+In the upcoming few weeks, I'll do videos on using activation keys with VDC subs (and other subs), and on how to see whether or not you need to use virt-who with the subs you have. If you have any other topics, especially around virt-who and subscription management, you would like a video on, let me know!
+
+So go check out the video! If you enjoy let me know (and if you don't let me know what you would have liked to see differently)! Also, please subscribe if you want to get a notification the next time I publish a video, or just want to show a little support :)
+
+video::y7F2zR7Yuk4[youtube]
+
