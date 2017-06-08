@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Using virt-who with virtual datacenter subscriptions</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://100things.wzzrd.com/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="//100things.wzzrd.com/themes/casper/assets/css/screen.css?v=1496921527496" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <link rel="canonical" href="http://100things.wzzrd.com/2017/06/08/Using-virt-who-with-virtual-datacenter-subscriptions.html" />
+    <meta name="referrer" content="origin" />
+    
+    <meta property="og:site_name" content="100 things to do with Red Hat Management Products" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Using virt-who with virtual datacenter subscriptions" />
+    <meta property="og:description" content="At Red Hat, one of the subscription types we offer is the &quot;virtual datacenter subscription&quot;, or VDC. A VDC offers our customers a way to run an unlimited amount of RHEL VMs on a supported hypervisor [1]. A requirement to run an unlimited amount of VMs on a hypervisor, is" />
+    <meta property="og:url" content="http://100things.wzzrd.com/2017/06/08/Using-virt-who-with-virtual-datacenter-subscriptions.html" />
+    <meta property="article:published_time" content="2017-06-08T00:00:00.000Z" />
+    <meta property="article:tag" content="virt-who" />
+    <meta property="article:tag" content=" vdc" />
+    <meta property="article:tag" content=" redhat" />
+    <meta property="article:tag" content=" youtube" />
+    <meta property="article:tag" content=" satellite6" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Using virt-who with virtual datacenter subscriptions" />
+    <meta name="twitter:description" content="At Red Hat, one of the subscription types we offer is the &quot;virtual datacenter subscription&quot;, or VDC. A VDC offers our customers a way to run an unlimited amount of RHEL VMs on a supported hypervisor [1]. A requirement to run an unlimited amount of VMs on a hypervisor, is" />
+    <meta name="twitter:url" content="http://100things.wzzrd.com/2017/06/08/Using-virt-who-with-virtual-datacenter-subscriptions.html" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "100 things to do with Red Hat Management Products",
+    "author": {
+        "@type": "Person",
+        "name": "Maxim Burgerhout",
+        "image": "https://avatars2.githubusercontent.com/u/69339?v=3",
+        "url": "http://100things.wzzrd.com/author/wzzrd/",
+        "sameAs": "https://about.me/MaximBurgerhout",
+        "description": "Solution architect at Red Hat for the platform and cloud portfolio; likes Python, likes Ruby, internally conflicted about that; maintainer of @RedHatSatellite"
+    },
+    "headline": "Using virt-who with virtual datacenter subscriptions",
+    "url": "http://100things.wzzrd.com/2017/06/08/Using-virt-who-with-virtual-datacenter-subscriptions.html",
+    "datePublished": "2017-06-08T00:00:00.000Z",
+    "keywords": "virt-who,  vdc,  redhat,  youtube,  satellite6",
+    "description": "At Red Hat, one of the subscription types we offer is the &quot;virtual datacenter subscription&quot;, or VDC. A VDC offers our customers a way to run an unlimited amount of RHEL VMs on a supported hypervisor [1]. A requirement to run an unlimited amount of VMs on a hypervisor, is"
+}
+    </script>
+
+    <meta name="generator" content="HubPress" />
+    <link rel="alternate" type="application/rss+xml" title="100 things to do with Red Hat Management Products" href="http://100things.wzzrd.com/rss/" />
+</head>
+<body class="post-template tag-virt-who tag-vdc tag-redhat tag-youtube tag-satellite6 nav-closed">
+
+    
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post tag-virt-who tag-vdc tag-redhat tag-youtube tag-satellite6">
+
+        <header class="post-header">
+            <h1 class="post-title">Using virt-who with virtual datacenter subscriptions</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2017-06-08">08 June 2017</time>  on <a href="http://100things.wzzrd.com/tag/virt-who/">virt-who</a>, <a href="http://100things.wzzrd.com/tag/vdc/"> vdc</a>, <a href="http://100things.wzzrd.com/tag/redhat/"> redhat</a>, <a href="http://100things.wzzrd.com/tag/youtube/"> youtube</a>, <a href="http://100things.wzzrd.com/tag/satellite6/"> satellite6</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <div class="paragraph">
+<p>At Red Hat, one of the subscription types we offer is the "virtual datacenter subscription", or VDC. A VDC offers our customers a way to run an unlimited amount of RHEL VMs on a supported hypervisor <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup>. A requirement to run an unlimited amount of VMs on a hypervisor, is that the subscription management tool, Satellite 6 in most cases, knows which VMs run on which hypervisor. That is where the virt-who tool comes in.</p>
+</div>
+<div class="paragraph">
+<p>A bunch of people have been asking me to do a video about setting up virt-who. I guess that is because initially, setting up virt-who was kind of complicated: you needed a dedicated VM to run it on, there were some issues with configuring it correctly, etc.</p>
+</div>
+<div class="paragraph">
+<p>However: we have come a long way since then. Setting up virt-who is actually dead simple these days. We even have a <a href="https://access.redhat.com/labs/virtwhoconfig/">configuration helper</a> page on our customer portal. Just use the wizard on that page, and copy paste the resulting configuration file onto the system you want to run virt-who on.</p>
+</div>
+<div class="paragraph">
+<p>In the video, I do a brief explanation of what virt-who is, how to install it, and how to make it work for you. It does not explain everything, because even now, it&#8217;s already a 10 minute video.</p>
+</div>
+<div class="paragraph">
+<p>In the upcoming few weeks, I&#8217;ll do videos on using activation keys with VDC subs (and other subs), and on how to see whether or not you need to use virt-who with the subs you have. If you have any other topics, especially around virt-who and subscription management, you would like a video on, let me know!</p>
+</div>
+<div class="paragraph">
+<p>So go check out the video! If you enjoy let me know (and if you don&#8217;t let me know what you would have liked to see differently)! Also, please subscribe if you want to get a notification the next time I publish a video, or just want to show a little support :)</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<iframe src="https://www.youtube.com/embed/y7F2zR7Yuk4?rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnote_1">
+<a href="#_footnoteref_1">1</a>. Supported virtualization platforms are RHV, vSphere, Hyper-V and libvirt on RHEL
+</div>
+</div>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="http://100things.wzzrd.com/author/wzzrd/" style="background-image: url(https://avatars2.githubusercontent.com/u/69339?v&#x3D;3)"><span class="hidden">Maxim Burgerhout's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="http://100things.wzzrd.com/author/wzzrd/">Maxim Burgerhout</a></h4>
+
+                    <p>Solution architect at Red Hat for the platform and cloud portfolio; likes Python, likes Ruby, internally conflicted about that; maintainer of @RedHatSatellite</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">somewhere around Leiden, the Netherlands</span>
+                    <span class="author-link icon-link"><a href="https://about.me/MaximBurgerhout">https://about.me/MaximBurgerhout</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Using%20virt-who%20with%20virtual%20datacenter%20subscriptions&amp;url=http://100things.wzzrd.com/2017/06/08/Using-virt-who-with-virtual-datacenter-subscriptions.html"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://100things.wzzrd.com/2017/06/08/Using-virt-who-with-virtual-datacenter-subscriptions.html"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://100things.wzzrd.com/2017/06/08/Using-virt-who-with-virtual-datacenter-subscriptions.html"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+
+        <section class="post-comments">
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = '100things'; // required: replace example with your forum shortname
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
+
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://100things.wzzrd.com">100 things to do with Red Hat Management Products</a> &copy; 2017</section>
+            <section class="poweredby">Proudly published with <a href="http://hubpress.io">HubPress</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();
+      </script>
+       
+    <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+    <script type="text/javascript" src="//100things.wzzrd.com/themes/casper/assets/js/jquery.fitvids.js?v=1496921527496"></script>
+    <script type="text/javascript" src="//100things.wzzrd.com/themes/casper/assets/js/index.js?v=1496921527496"></script>
+
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-1886096-11', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+</body>
+</html>
