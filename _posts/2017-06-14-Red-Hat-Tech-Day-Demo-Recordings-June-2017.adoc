@@ -6,7 +6,7 @@ So last Tuesday, I presented about Red Hat's container development kit during th
 
 Though most of the demos succeeded eventually, they all took way longer than expected due to some network issues. I'll be frank: that sucked.
 
-So I tried to make good on my promise to make sure everyone would be able to see these demos at their own time and pace. This morning I did some recording, I did some editing and I did some publishing. And as of now, all five demos that I planned to do are available on my YouTube channel, and you'll find direct links to them below for convenience. There's also a https://www.youtube.com/playlist?list=PLTJ5vj7osiGO7K70076Y4kjWgoQxfKyJd[playlist] on youtube.com that has all five videos in them. For binge watching ;)
+I tried to make good on my promise to make sure everyone would be able to see these demos at their own time and pace. This morning I did some recording, I did some editing and I did some publishing. And as of now, all five demos that I planned to do are available on my YouTube channel, and you'll find direct links to them below for convenience. There's also a https://www.youtube.com/playlist?list=PLTJ5vj7osiGO7K70076Y4kjWgoQxfKyJd[playlist] on youtube.com that has all five videos in them. For binge watching ;)
 
 Hope you enjoy and have fun trying out our awesome CDK!
 
