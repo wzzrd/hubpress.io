@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Creating screencasts on Linux</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://100things.wzzrd.com/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="//100things.wzzrd.com/themes/casper/assets/css/screen.css?v=1498072388557" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <link rel="canonical" href="http://100things.wzzrd.com/2017/06/21/Creating-screencasts-on-Linux.html" />
+    <meta name="referrer" content="origin" />
+    
+    <meta property="og:site_name" content="100 things to do with Red Hat Management Products" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Creating screencasts on Linux" />
+    <meta property="og:description" content="Intro As this is a new blog on Fedora Planet, let me start off by introducing myself briefly. My name is Maxim Burgerhout, and I have been a Fedora contributor for quite some time. Truth be told though, I haven&amp;#8217;t been able to spend much time maintaining my" />
+    <meta property="og:url" content="http://100things.wzzrd.com/2017/06/21/Creating-screencasts-on-Linux.html" />
+    <meta property="article:published_time" content="2017-06-21T00:00:00.000Z" />
+    <meta property="article:tag" content="screencasts" />
+    <meta property="article:tag" content=" Fedora" />
+    <meta property="article:tag" content=" meta" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Creating screencasts on Linux" />
+    <meta name="twitter:description" content="Intro As this is a new blog on Fedora Planet, let me start off by introducing myself briefly. My name is Maxim Burgerhout, and I have been a Fedora contributor for quite some time. Truth be told though, I haven&amp;#8217;t been able to spend much time maintaining my" />
+    <meta name="twitter:url" content="http://100things.wzzrd.com/2017/06/21/Creating-screencasts-on-Linux.html" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "100 things to do with Red Hat Management Products",
+    "author": {
+        "@type": "Person",
+        "name": "Maxim Burgerhout",
+        "image": "https://avatars2.githubusercontent.com/u/69339?v=3",
+        "url": "http://100things.wzzrd.com/author/wzzrd/",
+        "sameAs": "https://about.me/MaximBurgerhout",
+        "description": "Solution architect at Red Hat for the platform and cloud portfolio; likes Python, likes Ruby, internally conflicted about that; maintainer of @RedHatSatellite"
+    },
+    "headline": "Creating screencasts on Linux",
+    "url": "http://100things.wzzrd.com/2017/06/21/Creating-screencasts-on-Linux.html",
+    "datePublished": "2017-06-21T00:00:00.000Z",
+    "keywords": "screencasts,  Fedora,  meta",
+    "description": "Intro As this is a new blog on Fedora Planet, let me start off by introducing myself briefly. My name is Maxim Burgerhout, and I have been a Fedora contributor for quite some time. Truth be told though, I haven&amp;#8217;t been able to spend much time maintaining my"
+}
+    </script>
+
+    <meta name="generator" content="HubPress" />
+    <link rel="alternate" type="application/rss+xml" title="100 things to do with Red Hat Management Products" href="http://100things.wzzrd.com/rss/" />
+</head>
+<body class="post-template tag-screencasts tag-Fedora tag-meta nav-closed">
+
+    
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post tag-screencasts tag-Fedora tag-meta">
+
+        <header class="post-header">
+            <h1 class="post-title">Creating screencasts on Linux</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2017-06-21">21 June 2017</time>  on <a href="http://100things.wzzrd.com/tag/screencasts/">screencasts</a>, <a href="http://100things.wzzrd.com/tag/Fedora/"> Fedora</a>, <a href="http://100things.wzzrd.com/tag/meta/"> meta</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <div class="sect2">
+<h3 id="_intro">Intro</h3>
+<div class="paragraph">
+<p>As this is a new blog on Fedora Planet, let me start off by introducing myself briefly. My name is Maxim Burgerhout, and I have been a Fedora contributor for quite some time. Truth be told though, I haven&#8217;t been able to spend much time maintaining my packages over the past couple of years. As a different way of giving back, I want to start sharing some experiences with open source software in a specific niche: screencast creation, and video editing.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_background">Background</h3>
+<div class="paragraph">
+<p>A couple of months back, I started recording screencasts about Red Hat products.<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup>. For now, it&#8217;s mostly about management products, like Satellite, Ansible Tower and things like that, but I&#8217;ll potentially also cover other products and projects as they pop up in my daily work, and as said above, I intend to start sharing some experiences.<sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnote_2" title="View footnote.">2</a>]</sup> about creating screencasts on Fedora.</p>
+</div>
+<div class="paragraph">
+<p>Assuming more people are trying to figure out the same things I am, I&#8217;m starting off with a short write-up of my experiences so far, trying to work with open source software to create screencasts. Spoiler: it&#8217;s not as easy as I hoped it would be.</p>
+</div>
+<div class="paragraph">
+<p>The below article is based on my experience using Fedora 25.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_recording_video">Recording video</h3>
+<div class="paragraph">
+<p>Ever since I started doing this, I&#8217;ve been using <a href="http://screencastify.com/">Screencastify</a> as my screen recorder of choice. I have tried using the <a href="https://extensions.gnome.org/extension/690/easyscreencast/">EasyScreencast</a> Gnome Shell extension in the beginning, but it had (temporarily) died, so that didn&#8217;t seem viable. It seems to have revived though, so I&#8217;ll probably try it again when my Screencastify subscription expires near the end of the calendar year.</p>
+</div>
+<div class="paragraph">
+<p>I also tried the <a href="https://help.gnome.org/users/gnome-help/stable/screen-shot-record.html.en">CTRL-ALT-SHIFT-R</a> option to start a screencast recording in Gnome, but that records both my monitors, which makes editing the whole thing into a Youtube video quite a pain.<sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnote_3" title="View footnote.">3</a>]</sup>.</p>
+</div>
+<div class="paragraph">
+<p>Finally, gtk-recordmydesktop gives me all kinds of strange artifacts in my recording when I move my mouse. It also seemed to crash quite frequently, and seems to be dead upstream.</p>
+</div>
+<div class="paragraph">
+<p>All options available from the community (the built-in one, gtk-recordmydesktop and EasyScreencast) were disqualified for various reasons, either because of lack of maintenance, quircks or instability.</p>
+</div>
+<div class="paragraph">
+<p>However, apart from the occasional crash (which happens very seldomly), Screencastify works beautifully. I can record a window, a Chrome tab, or my whole desktop. Recording my voice over the videos also works pretty well, using a USB microphone I bought for the purpose of creating screencasts.</p>
+</div>
+<div class="paragraph">
+<p>The downside of Screencastify is that it&#8217;s a proprietary piece of software. For now, it&#8217;s the clear winner, but in the future I&#8217;ll give EasyScreencast a go for it&#8217;s money again.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_recording_audio_on_it_s_own">Recording audio on it&#8217;s own</h3>
+<div class="paragraph">
+<p>Recording audio on Fedora can be done through various options, of which the two most obvious are <a href="https://wiki.gnome.org/Design/Apps/SoundRecorder">Sound Recorder</a> and <a href="http://www.audacityteam.org/">Audacity</a>.</p>
+</div>
+<div class="paragraph">
+<p>Sound Recorder is the default sound recorder app in Gnome 3. It&#8217;s OK for very simple usage, but the moment you want to start editing audio or improving audio quality using filters, Sound Recorder doesn&#8217;t offer anything.</p>
+</div>
+<div class="paragraph">
+<p>Audacity on the contrary, is <strong>very</strong> complete. It&#8217;s even a bit intimidating in the amount of options it offers, but in terms of recording quality, editing the recordings and improving their quality, Audacity is the de-facto standard in open source, on Linux as well as on various other platforms. Simply said, it&#8217;s brilliant.</p>
+</div>
+<div class="paragraph">
+<p>Audacity is the clear winner hear, without any real competition.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_editing_video">Editing video</h3>
+<div class="paragraph">
+<p>So this is where the real pain starts. Save to say, video editing on Linux was a bit of a disappointment for me.</p>
+</div>
+<div class="paragraph">
+<p>I have tried all of the major video editing open source projects that available natively on Fedora: Kdenlive, Pitivi, Avidemux and OpenShot, as well as the commercially available Lightworks.</p>
+</div>
+<div class="paragraph">
+<p>To start with <a href="http://fixounet.free.fr/avidemux/">Avidemux</a>: it seems to lack the full broad spectrum of features one would need to edit and merge large amounts of clips into a new video, and insert transitions and background audio. I assume it would work nicely to just crop two videos and slam them together, but it doesn&#8217;t feel right for more complex things. Granted, I haven&#8217;t spent a huge amount with this program, so let me know if you think I&#8217;m dismissing Avidemux too easily. It just wasn&#8217;t enough for me.</p>
+</div>
+<div class="paragraph">
+<p>Next up are <a href="http://www.openshot.org/">OpenShot</a> and <a href="https://kdenlive.org/">Kdenlive</a>. Both great programs, both with extensive feature sets that would suffice for me and both with the same continuous problem that disqualified them: they crash. Over and over. I&#8217;ll be filing bugs for both, but no matter how that turns out, right NOW, they are not very useful for me. Both seem to have somewhat lively upstreams tho, so who knows what the future might bring.</p>
+</div>
+<div class="paragraph">
+<p>Sadly, I&#8217;ve spent too much time trying to get OpenShoft and Kdenlive to work, and that kept me from thoroughly evaluating my next contender: <a href="https://git.gnome.org/browse/pitivi">Pitivi</a>.</p>
+</div>
+<div class="paragraph">
+<p>Pitivi used to fall into the same category as OpenShoft and Kdenlive (crashing), but I haven&#8217;t experienced any crashes recently. I comes with a nice set of effects, just like OpenShoft and Kdenlive, and is fairly easy to use. It exports to all of the right formats, but sadly, rendering of video happens in the foreground. This blocksyou from using the program during that process. Not a big deal for a video of a couple of minutes, but annoying for anything longer than that.</p>
+</div>
+<div class="paragraph">
+<p>The final program I just had to take a look at, is Lightworks. It&#8217;s not open source, but it really is bloody good. It&#8217;s by far the most complete of the lot, but it comes at a hefty price. Also, some of the options that are really interesting for making screencasts, like a built-in voice-over recorder, isn&#8217;t available on Linux :(</p>
+</div>
+<div class="paragraph">
+<p>I would say for video editing, Pitivi and Lightworks are tied, with Lightworks being the more complete option, and Pitivi being the open source one.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusion">Conclusion</h3>
+<div class="paragraph">
+<p>Audio editing we have under control in open source. Audacity is great. It&#8217;s just really, really great. (There, enough Trumpianisms for today.)</p>
+</div>
+<div class="paragraph">
+<p>Screencast recording has come a long way, but hasn&#8217;t quite reached the level of functionality I needed a couple of months back. It might have grown to that level in the meantime, though. I&#8217;ll take the time to re-evaluate EasyScreencast and post an update sometime in the Fall.</p>
+</div>
+<div class="paragraph">
+<p>Video editing is still a bit of a problem. The commercial option is good, but pretty expensive and obviously not open source. Two of the three main contenders (OpenShot and Kdenlive) have serious stability issues, up to the point that I just gave up on them. Bugs will be filed, but that&#8217;s not helping me today. Pitivi is a little less complete than both OpenShot and Kdenlive, I think, but does show promise (and doesn&#8217;t crash that often).</p>
+</div>
+<div class="paragraph">
+<p>As with EasyScreencast, I&#8217;ll give Pitivi as second try and hopefully find an open source solution for my video editing problem.</p>
+</div>
+<div class="paragraph">
+<p>TL;DR if you are looking for a set of tools to record and edit screencasts on Fedora, you probably want to check out EasyScreencast, and use Screencastify as a fall-back option. For audio, there&#8217;s no way around Audacity. If you can shell out some dough and don&#8217;t mind a bit of proprietary software, go for Lightworks, otherwise Pitivi will help you overcome most video editing problems.</p>
+</div>
+<div class="paragraph">
+<p>M</p>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnote_1">
+<a href="#_footnoteref_1">1</a>. I work as a solution architect for Red Hat in the Benelux region
+</div>
+<div class="footnote" id="_footnote_2">
+<a href="#_footnoteref_2">2</a>. How-to&#8217;s, why this and not that, and who knows: screencasts ;)
+</div>
+<div class="footnote" id="_footnote_3">
+<a href="#_footnoteref_3">3</a>. If you know who to limit this to a single monitor, or even better: a single window, I&#8217;m all ears!
+</div>
+</div>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="http://100things.wzzrd.com/author/wzzrd/" style="background-image: url(https://avatars2.githubusercontent.com/u/69339?v&#x3D;3)"><span class="hidden">Maxim Burgerhout's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="http://100things.wzzrd.com/author/wzzrd/">Maxim Burgerhout</a></h4>
+
+                    <p>Solution architect at Red Hat for the platform and cloud portfolio; likes Python, likes Ruby, internally conflicted about that; maintainer of @RedHatSatellite</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">somewhere around Leiden, the Netherlands</span>
+                    <span class="author-link icon-link"><a href="https://about.me/MaximBurgerhout">https://about.me/MaximBurgerhout</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Creating%20screencasts%20on%20Linux&amp;url=http://100things.wzzrd.com/2017/06/21/Creating-screencasts-on-Linux.html"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://100things.wzzrd.com/2017/06/21/Creating-screencasts-on-Linux.html"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://100things.wzzrd.com/2017/06/21/Creating-screencasts-on-Linux.html"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+
+        <section class="post-comments">
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = '100things'; // required: replace example with your forum shortname
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
+
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://100things.wzzrd.com">100 things to do with Red Hat Management Products</a> &copy; 2017</section>
+            <section class="poweredby">Proudly published with <a href="http://hubpress.io">HubPress</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();
+      </script>
+       
+    <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+    <script type="text/javascript" src="//100things.wzzrd.com/themes/casper/assets/js/jquery.fitvids.js?v=1498072388557"></script>
+    <script type="text/javascript" src="//100things.wzzrd.com/themes/casper/assets/js/index.js?v=1498072388557"></script>
+
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-1886096-11', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+</body>
+</html>
