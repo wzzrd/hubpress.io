@@ -1,0 +1,49 @@
+= Creating screencasts on Linux
+:published_at: 2017-06-21
+:hp-tags: screencasts, Fedora, meta
+
+A couple of months back, I started recording screencasts about Red Hat products. For now, it's mostly about management products, like Satellite, Ansible Tower and things like that, but I'll potentially also cover other products and projects as they pop up in my daily work.
+
+If people are trying to figure out the same things I was, here a short write-up of my experiences trying to work with open source software to create screencasts. Spoiler: it's not as easy as I hoped it would be. The below article is based on my experience using Fedora 25.
+
+
+=== Recording video
+
+Ever since I started doing this, I've been using http://screencastify.com/[Screencastify] as my screen recorder of choice. I have tried using the https://extensions.gnome.org/extension/690/easyscreencast/[EasyScreencast] Gnome Shell extension in the beginning, but it had (temporarily) died, so that didn't seem viable. It seems to have revived though, so I'll probably try it again when my Screencastify subscription expires.
+
+I also tried the https://help.gnome.org/users/gnome-help/stable/screen-shot-record.html.en[CTRL-ALT-SHIFT-R] option to start a screencast recording in Gnome, but that records both my desktops, which makes editing the whole thing into a Youtube video quite a pain.footnote:[If you know who to limit this to a single monitor, or even better: a single window, I'm all ears!].
+
+Finally, gtk-recordmydesktop gave me all kinds of strange artifacts in my recording when I move my mouse. It also seemed to crash quite frequently, and seems to be dead upstream.
+
+All options available from the community (the built-in one, gtk-recordmydesktop and EasyScreencast) were disqualified for various reasons, either because of lack of maintenance, quircks or instability.
+
+Apart from the occasional crash (happens very seldomly), Screencastify works beautifully, however. I can record a window, a Chrome tab, or my whole desktop. The downside is that it's a proprietary piece of software, but for now, it's the clear winner.
+
+Recording my voice over the videos works pretty well as well, using a USB microphone I bought for the purpose of creating screencasts.
+
+
+=== Recording audio on it's own
+
+Recording audio on Fedora can be done through various options, of which the two most obvious are Sound Recorder and Audacity. 
+
+Sound Recorder is the default sounds recorder app in Gnome 3. It's OK for very simple usage, but the moment you want to start editing audio and improving audio quality, Sound Recorder doesn't offer anything.
+
+Audacity is brilliant. It's a bit intimidating in the amount of options it offers, but in terms of recording quality, editing the recordings and improving their quality, Audacity is the de-facto standard in open source, on Linux as well as on various other platforms. It's truly great 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
