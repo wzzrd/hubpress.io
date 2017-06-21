@@ -17,9 +17,9 @@ Finally, gtk-recordmydesktop gave me all kinds of strange artifacts in my record
 
 All options available from the community (the built-in one, gtk-recordmydesktop and EasyScreencast) were disqualified for various reasons, either because of lack of maintenance, quircks or instability.
 
-Apart from the occasional crash (happens very seldomly), Screencastify works beautifully, however. I can record a window, a Chrome tab, or my whole desktop. The downside is that it's a proprietary piece of software, but for now, it's the clear winner.
+Apart from the occasional crash (happens very seldomly), Screencastify works beautifully, however. I can record a window, a Chrome tab, or my whole desktop. Recording my voice over the videos works pretty well as well, using a USB microphone I bought for the purpose of creating screencasts.
 
-Recording my voice over the videos works pretty well as well, using a USB microphone I bought for the purpose of creating screencasts.
+The downside of Screencastify is that it's a proprietary piece of software. For now, it's the clear winner, but in the future I'll give EasyScreencast a go for it's money again.
 
 
 === Recording audio on it's own
@@ -28,8 +28,39 @@ Recording audio on Fedora can be done through various options, of which the two 
 
 Sound Recorder is the default sounds recorder app in Gnome 3. It's OK for very simple usage, but the moment you want to start editing audio and improving audio quality, Sound Recorder doesn't offer anything.
 
-Audacity is brilliant. It's a bit intimidating in the amount of options it offers, but in terms of recording quality, editing the recordings and improving their quality, Audacity is the de-facto standard in open source, on Linux as well as on various other platforms. It's truly great 
+Audacity is brilliant. It's a bit intimidating in the amount of options it offers, but in terms of recording quality, editing the recordings and improving their quality, Audacity is the de-facto standard in open source, on Linux as well as on various other platforms. 
 
+Naming Audacity my go-to platform for audio recording and editing doesn't require any further explanation, I think :)
+
+
+=== Editing video
+
+So this is where the big pain starts. Video editing on Linux was a bit of a disappointment for me.
+
+I have tried all of the major video editing open source projects available natively on Fedora: OpenShot, Kdenlive, Pitivi, Avidemux and OpenShot, as well as the commercial Lightworks.
+
+To start with Avidemux: it seems have some nice features, but seems to lack the full spectrum of features one would need to edit and merge large amounts of clips into a new video, and insert transitions and background audio. Granted, I haven't spent a huge amount with this program, so let me know if I'm dismissing Avidemux too easily, but it just wasn't enough for me.
+
+Next up are OpenShot and Kdenlive. Both great programs, both with extensive feature sets that would suffice for me and both with the same continuous problem that disqualified them for me: they crash. Over and over. I'll be filing bugs for both, but no matter how that turns out, right NOW, they are not very useful for me. Both seem to have somewhat lively upstreams tho, so who knows what the future might bring. 
+
+Sadly, I've spent too much time getting OpenShoft and Kdenlive to work, and that kept me from thoroughly evaluating my next contender: Pitivi.
+
+Pitivi used to fall into the same category as OpenShoft and Kdenlive, but I haven't experienced any crashes recently. I comes with a nice set of effects, just like OpenShoft and Kdenlive, and is easy to use. It exports to all of the right formats, sadly, rendering of video happens in the foreground, stopping you from using the program during that process.
+
+The final program I just had to take a look at, is Lightworks. It's not open source, but it really is bloody good. It's by far the completest of the lot, but it comes at a hefty price. Also, some of the options that are really interesting for making screencasts, like a built-in voice over recording feature, isn't available on Linux :(
+
+I would say for video editing, Pitivi and Lightworks are tied, with Lightworks being the more complete option, and Pitivi being the open source one.
+
+
+=== Conclusion
+
+Audio editing we have under control in open source. Audacity is great. It's just really, really great. (There, enough Trumpianisms for today.)
+
+Screencast recording has come a long way, but hadn't quite reach the level of functionality I needed a couple of months back, though it might have grown to that level in the meantime. I'll take the time to re-evaluate EasyScreencast and post an update.
+
+Video editing is still a bit of a problem. The commercial option is good, but very expensive and obviously not open source. Two of the three main contenders (OpenShot and Kdenlive) have serious stability issues, up to the point that I just gave up on them. Bugs will be filed, but that's not helping me now. Pitivi is a little less complete than both OpenShot and Kdenlive, I think, but seems to show promise. As with EasyScreencast, I'll give Pitivi as second try (the first time I tried it, it crashed often as well) and hopefully find an open source solution for my video editing problem.
+
+M
 
 
 
