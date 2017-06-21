@@ -2,7 +2,11 @@
 :published_at: 2017-06-21
 :hp-tags: screencasts, Fedora, meta
 
-As this is a new blog on Fedora Planet, let me start off by introducing myself. My name is Maxim Burgerhout, and I have been a Fedora contributor for quite some years. Truth be told though, I haven't been able to spend much time maintaining my packages over the past couple of years. As a different way of giving back, I want to start sharing some experiences with open source software in a specific niche.
+=== Intro
+
+As this is a new blog on Fedora Planet, let me start off by introducing myself briefly. My name is Maxim Burgerhout, and I have been a Fedora contributor for quite some time. Truth be told though, I haven't been able to spend much time maintaining my packages over the past couple of years. As a different way of giving back, I want to start sharing some experiences with open source software in a specific niche: screencast creation, and video editing.
+
+=== Background
 
 A couple of months back, I started recording screencasts about Red Hat products.footnote:[I work as a solution architect for Red Hat in the Benelux region]. For now, it's mostly about management products, like Satellite, Ansible Tower and things like that, but I'll potentially also cover other products and projects as they pop up in my daily work, and as said above, I intend to start sharing some experiences.footnote:[How-to's, why this and not that, and who knows: screencasts ;)] about creating screencasts on Fedora.
 
