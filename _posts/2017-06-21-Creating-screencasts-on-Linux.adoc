@@ -41,17 +41,17 @@ Audacity is the clear winner hear, without any real competition.
 
 So this is where the real pain starts. Save to say, video editing on Linux was a bit of a disappointment for me.
 
-I have tried all of the major video editing open source projects available natively on Fedora: OpenShot, Kdenlive, Pitivi, Avidemux and OpenShot, as well as the commercial Lightworks.
+I have tried all of the major video editing open source projects that available natively on Fedora: Kdenlive, Pitivi, Avidemux and OpenShot, as well as the commercially available Lightworks.
 
-To start with http://fixounet.free.fr/avidemux/[Avidemux]: it seems have some nice features, but seems to lack the full spectrum of features one would need to edit and merge large amounts of clips into a new video, and insert transitions and background audio. Granted, I haven't spent a huge amount with this program, so let me know if I'm dismissing Avidemux too easily, but it just wasn't enough for me.
+To start with http://fixounet.free.fr/avidemux/[Avidemux]: it seems to lack the full broad spectrum of features one would need to edit and merge large amounts of clips into a new video, and insert transitions and background audio. I assume it would work nicely to just crop two videos and slam them together, but it doesn't feel right for more complex things. Granted, I haven't spent a huge amount with this program, so let me know if you think I'm dismissing Avidemux too easily. It just wasn't enough for me.
 
-Next up are https://github.com/OpenShot/openshot-qt[OpenShot] and https://cgit.kde.org/kdenlive.git/log/[Kdenlive]. Both great programs, both with extensive feature sets that would suffice for me and both with the same continuous problem that disqualified them for me: they crash. Over and over. I'll be filing bugs for both, but no matter how that turns out, right NOW, they are not very useful for me. Both seem to have somewhat lively upstreams tho, so who knows what the future might bring. 
+Next up are http://www.openshot.org/[OpenShot] and https://kdenlive.org/[Kdenlive]. Both great programs, both with extensive feature sets that would suffice for me and both with the same continuous problem that disqualified them: they crash. Over and over. I'll be filing bugs for both, but no matter how that turns out, right NOW, they are not very useful for me. Both seem to have somewhat lively upstreams tho, so who knows what the future might bring. 
 
-Sadly, I've spent too much time getting OpenShoft and Kdenlive to work, and that kept me from thoroughly evaluating my next contender: https://git.gnome.org/browse/pitivi[Pitivi].
+Sadly, I've spent too much time trying to get OpenShoft and Kdenlive to work, and that kept me from thoroughly evaluating my next contender: https://git.gnome.org/browse/pitivi[Pitivi].
 
-Pitivi used to fall into the same category as OpenShoft and Kdenlive, but I haven't experienced any crashes recently. I comes with a nice set of effects, just like OpenShoft and Kdenlive, and is easy to use. It exports to all of the right formats, sadly, rendering of video happens in the foreground, stopping you from using the program during that process.
+Pitivi used to fall into the same category as OpenShoft and Kdenlive (crashing), but I haven't experienced any crashes recently. I comes with a nice set of effects, just like OpenShoft and Kdenlive, and is fairly easy to use. It exports to all of the right formats, but sadly, rendering of video happens in the foreground. This blocksyou from using the program during that process. Not a big deal for a video of a couple of minutes, but annoying for anything longer than that.
 
-The final program I just had to take a look at, is Lightworks. It's not open source, but it really is bloody good. It's by far the completest of the lot, but it comes at a hefty price. Also, some of the options that are really interesting for making screencasts, like a built-in voice over recording feature, isn't available on Linux :(
+The final program I just had to take a look at, is Lightworks. It's not open source, but it really is bloody good. It's by far the most complete of the lot, but it comes at a hefty price. Also, some of the options that are really interesting for making screencasts, like a built-in voice-over recorder, isn't available on Linux :(
 
 I would say for video editing, Pitivi and Lightworks are tied, with Lightworks being the more complete option, and Pitivi being the open source one.
 
@@ -60,9 +60,13 @@ I would say for video editing, Pitivi and Lightworks are tied, with Lightworks b
 
 Audio editing we have under control in open source. Audacity is great. It's just really, really great. (There, enough Trumpianisms for today.)
 
-Screencast recording has come a long way, but hadn't quite reach the level of functionality I needed a couple of months back, though it might have grown to that level in the meantime. I'll take the time to re-evaluate EasyScreencast and post an update.
+Screencast recording has come a long way, but hasn't quite reached the level of functionality I needed a couple of months back. It might have grown to that level in the meantime, though. I'll take the time to re-evaluate EasyScreencast and post an update sometime in the Fall.
 
-Video editing is still a bit of a problem. The commercial option is good, but very expensive and obviously not open source. Two of the three main contenders (OpenShot and Kdenlive) have serious stability issues, up to the point that I just gave up on them. Bugs will be filed, but that's not helping me now. Pitivi is a little less complete than both OpenShot and Kdenlive, I think, but seems to show promise. As with EasyScreencast, I'll give Pitivi as second try (the first time I tried it, it crashed often as well) and hopefully find an open source solution for my video editing problem.
+Video editing is still a bit of a problem. The commercial option is good, but pretty expensive and obviously not open source. Two of the three main contenders (OpenShot and Kdenlive) have serious stability issues, up to the point that I just gave up on them. Bugs will be filed, but that's not helping me today. Pitivi is a little less complete than both OpenShot and Kdenlive, I think, but does show promise (and doesn't crash that often). 
+
+As with EasyScreencast, I'll give Pitivi as second try and hopefully find an open source solution for my video editing problem.
+
+TL;DR if you are looking for a set of tools to record and edit screencasts on Fedora, you probably want to check out EasyScreencast, and use Screencastify as a fall-back option. For audio, there's no way around Audacity. If you can shell out some dough and don't mind a bit of proprietary software, go for Lightworks, otherwise Pitivi will help you overcome most video editing problems.
 
 M
 
