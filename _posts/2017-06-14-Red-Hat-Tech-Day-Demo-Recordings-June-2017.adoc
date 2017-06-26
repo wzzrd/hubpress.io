@@ -33,3 +33,12 @@ video::jNgzAoYqC1k[youtube]
 * Red Hat Tech Day NL 2017: Using the CDK to quickly test small changes 
 
 video::sQAkzH75YfA[youtube]
+
+=== Update
+Some people have asked for the json file I used to create the .NET project on the CDK I was running on Linux. I have uploaded it to this blog. You can download it https://raw.githubusercontent.com/wzzrd/hubpress.io/gh-pages/images/dotnet-important-app.json[here].
+
+
+
+
+
+
