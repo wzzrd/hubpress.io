@@ -27,4 +27,8 @@ That gets even stronger as companies use more cloud services. Building a busines
 
 I talk to companies that are busy transitioning to open source, both on premise and in the cloud on a daily basis. Obviously, these kinds of technological changes are not without challenges, but here you can count on the support of open source companies and communities.
 
-In conclusion, I’ll say that companies can’t go around open source in the long run. For both traditional software and the cloud, it is quickly becoming the standard for rapid innovation and development. That’s an especially good reason to start using this innovation engine right now.
+In conclusion, I’ll say that companies can’t go around open source in the long run. For both traditional software and the cloud, it is quickly becoming the standard for rapid innovation and development. That’s an especially good reason to 
+start using this innovation engine right now.
+
+This blog was also published on https://www.linkedin.com/pulse/open-source-most-important-motor-innovation-maxim-burgerhout[LinkedIn] and https://www.computable.nl/artikel/blogs/opensource/6050245/5260614/opensource-is-belangrijkste-motor-voor-innovatie.html[Computable] (in Dutch).
+
