@@ -1,0 +1,30 @@
+= Open source is the most important motor for innovation
+:hp-image: https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAy-AAAAJGU0NmQ1MzcyLWMzYTMtNDk0MC1iNjJlLTRhZmZmZTNlYWVlYg.jpg
+:published_at: 2017-07-04
+:hp-tags: Open_Source
+
+Recently, during the OpenTechDay in Utrecht, I had the opportunity to share my passion for open source. Since I didn’t need to convince the open source audience, I decided instead to focus on the open source success story. How far have we come since the beginning and where are we going? I think we, as a community, should be proud of the huge success of open source and also its ability to capture the cloud. 
+
+Open source has a longer history than you would think. Some of the first computers from the 1960s were provided with software that could be freely customized and shared with other users. In the 1970s, the software world accelerated with the birth of the Internet, the programming language C and UNIX.
+
+Through the GNU project by Richard Stallman and Linux from Linus Torvalds, started in the 1980s and 1990s respectively, open source became a serious alternative to proprietary software. But that isn’t all. Numerous open source projects have since been launched and the number is growing by the day.
+
+However, open source was put down, for several decades, as the enemy of commercial software and the work of hobbyists. That image has changed dramatically and this is demonstrated by the fact that open source is now being used everywhere, from smartphones and routers to servers and complete data centers. Open source is literally the driving force behind all current and future innovations.
+
+=== More than an operating system
+
+Open source is definitely not just about software and operating systems. Virtually all modern programming languages and open standards are part of it. Yet, there are still people who think open source is not valuable in the world of public clouds. I must quickly dispel this myth, as open source is on its way to becoming the de facto standard for cloud infrastructure.
+
+From private and public to hybrid clouds -- open standards and technology like OpenStack and Linux containers make these environments flexibly interchangeable. Organizations are no longer hampered by the restrictions that traditional software vendors have in terms of integration or platform support. With open source, they benefit from the commitment of the dynamic community projects on which this technology is based. The innovation speed is many times higher than that of a proprietary software supplier, who develops behind closed doors with a small team of developers.
+
+=== Embrace the community
+
+Those who think they aren’t part of an open source community are likely mistaken. By using open source software, you are contributing to testing and making the project successful.
+
+Companies also seem to increasingly realize this. By using open source software, they become part of that huge community. Together with other companies, individual developers, suppliers and partners, they all work for the same purpose: developing better technology in an open way. They can therefore participate in testing, developing and improving the software that further helps their organization.
+
+That gets even stronger as companies use more cloud services. Building a business infrastructure on an open source foundation makes it much easier to move to a cloud or data center where open source is also the default.
+
+I talk to companies that are busy transitioning to open source, both on premise and in the cloud on a daily basis. Obviously, these kinds of technological changes are not without challenges, but here you can count on the support of open source companies and communities.
+
+In conclusion, I’ll say that companies can’t go around open source in the long run. For both traditional software and the cloud, it is quickly becoming the standard for rapid innovation and development. That’s an especially good reason to start using this innovation engine right now.
