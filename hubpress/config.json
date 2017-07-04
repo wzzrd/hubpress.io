@@ -22,5 +22,21 @@
   },
   "theme": {
     "name": "casper"
+  },
+  "urls": {
+    "site": "http://100things.wzzrd.com",
+    "hubpress": "http://100things.wzzrd.com",
+    "theme": "//100things.wzzrd.com/themes/casper",
+    "images": "http://100things.wzzrd.com/images"
+  },
+  "initialisationConfigComponent": {
+    "name": "initialise-configuration",
+    "computed": {},
+    "methods": {},
+    "staticRenderFns": [
+      null,
+      null,
+      null
+    ]
   }
 }
