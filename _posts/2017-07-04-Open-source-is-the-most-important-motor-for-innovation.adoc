@@ -1,7 +1,7 @@
 = Open source is the most important motor for innovation
 :hp-image: https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAy-AAAAJGU0NmQ1MzcyLWMzYTMtNDk0MC1iNjJlLTRhZmZmZTNlYWVlYg.jpg
 :published_at: 2017-07-04
-:hp-tags: Open_Source
+:hp-tags: Open source
 
 Recently, during the OpenTechDay in Utrecht, I had the opportunity to share my passion for open source. Since I didn’t need to convince the open source audience, I decided instead to focus on the open source success story. How far have we come since the beginning and where are we going? I think we, as a community, should be proud of the huge success of open source and also its ability to capture the cloud. 
 
