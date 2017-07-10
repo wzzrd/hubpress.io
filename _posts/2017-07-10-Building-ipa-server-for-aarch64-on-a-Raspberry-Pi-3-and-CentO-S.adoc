@@ -118,7 +118,7 @@ After building (which will take a while), the resulting RPMs will be available i
 ....
 [ipa]
 name=CentOS-$releasever - IPA
-baseurl=file:///var/lib/mock/centos-7-aarch64/result
+baseurl=file:///var/lib/mock/epel-7-aarch64/result
 gpgcheck=0
 ....
 
