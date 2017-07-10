@@ -11,7 +11,7 @@ A bit. The specfile for ipa-server has a line reading `%ifarch x86_64 %{ix86}`. 
 === The setup
 My RPi3 runs CentOS7 for aarch64, based on the image that is available for download https://www.kraxel.org/repos/images/arm64-rpi3-centos7-mainline-20160803.raw.xz[here]. All in all, it works pretty well, with some caveats. One of those caveats is that the standard mock RPM doesn't provide a configuration file for aarch64. 
 
-Hence, if you want to start using mock to build RPMs on your RPi3, create a file called `epel-7-aarch.cfg` or `centos-7-aarch` and put the following content in it:
+Hence, if you want to start using mock to build RPMs on your RPi3, create a file called `epel-7-aarch64.cfg` and put the following content in it:
 
 ....
 config_opts['root'] = 'epel-7-aarch64'
