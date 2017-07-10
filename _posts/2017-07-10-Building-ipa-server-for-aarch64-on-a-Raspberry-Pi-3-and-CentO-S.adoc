@@ -3,7 +3,7 @@
 :hp-tags: centos, freeipa, idm, mock, rpm
 
 === What?
-I want to run IPA server (freeipa-server, IdM) on my Raspberry Pi 3. This allows me to connect Satellite servers, Ansible Tower servers and whatnot to an instance of IdM that I don't have to setup everytime, is always running and is actually used.
+I want to run IPA server (FreeIPA, IdM) on my Raspberry Pi 3. This allows me to connect Satellite servers, Ansible Tower servers and whatnot to an instance of IdM that I don't have to setup everytime, is always running and is actually used.
 
 === Is there a problem?
 A bit. The specfile for ipa-server has a line reading `%ifarch x86_64 %{ix86}`. This will prevent building ipa-server on any platform except for x86_64. I'm not sure why this is, but it means I have to build the RPM myself.
