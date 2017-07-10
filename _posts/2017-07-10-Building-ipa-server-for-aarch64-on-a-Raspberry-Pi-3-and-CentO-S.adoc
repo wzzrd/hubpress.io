@@ -6,7 +6,7 @@
 I want to run IPA server (FreeIPA, IdM) on my Raspberry Pi 3. This allows me to connect Satellite servers, Ansible Tower servers and whatnot to an instance of IdM that I don't have to setup everytime, is always running and is actually used.
 
 === Is there a problem?
-A bit. The specfile for ipa-server has a line reading `%ifarch x86_64 %{ix86}`. This will prevent building ipa-server on any platform except for x86_64. I'm not sure why this is, but it means I have to build the RPM myself.
+A bit. The specfile for ipa-server has a line reading `%ifarch x86_64 %{ix86}`. This will prevent building ipa-server on any platform except for x86_64. I'm not sure why this is, but it means I have to build the RPM myself. And luckily for me, it builds fine :)
 
 === The setup
 My RPi3 runs CentOS7 for aarch64, based on the image that is available for download https://www.kraxel.org/repos/images/arm64-rpi3-centos7-mainline-20160803.raw.xz[here]. All in all, it works pretty well, with some caveats. One of those caveats is that the standard mock RPM doesn't provide a configuration file for aarch64. 
