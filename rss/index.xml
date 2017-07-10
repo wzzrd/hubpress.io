@@ -1,4 +1,172 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Tue, 04 Jul 2017 12:03:59 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Open source is the most important motor for innovation]]></title><description><![CDATA[<div id="preamble">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 10 Jul 2017 08:43:05 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Building ipa-server for aarch64 on a Raspberry Pi 3 and CentOS7]]></title><description><![CDATA[<div class="sect2">
+<h3 id="_what">What?</h3>
+<div class="paragraph">
+<p>I want to run IPA server (freeipa-server, IdM) on my Raspberry Pi 3. This allows me to connect Satellite servers, Ansible Tower servers and whatnot to an instance of IdM that I don&#8217;t have to setup everytime, is always running and is actually used.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_is_there_a_problem">Is there a problem?</h3>
+<div class="paragraph">
+<p>A bit. The specfile for ipa-server has a line reading <code>%ifarch x86_64 %{ix86}</code>. This will prevent building ipa-server on any platform except for x86_64. I&#8217;m not sure why this is, but it means I have to build the RPM myself.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_setup">The setup</h3>
+<div class="paragraph">
+<p>My RPi3 runs CentOS7 for aarch64, based on the image that is available for download <a href="https://www.kraxel.org/repos/images/arm64-rpi3-centos7-mainline-20160803.raw.xz">here</a>. All in all, it works pretty well, with some caveats. One of those caveats is that the standard mock RPM doesn&#8217;t provide a configuration file for aarch64.</p>
+</div>
+<div class="paragraph">
+<p>Hence, if you want to start using mock to build RPMs on your RPi3, create a file called <code>epel-7-aarch.cfg</code> or <code>centos-7-aarch</code> and put the following content in it:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>config_opts['root'] = 'epel-7-aarch64'
+config_opts['target_arch'] = 'aarch64'
+config_opts['legal_host_arches'] = ('aarch64',)
+config_opts['chroot_setup_cmd'] = 'install bash bzip2 coreutils cpio diffutils fedora-release findutils gawk gcc gcc-c++ grep gzip info make patch redhat-rpm-config rpm-build sed shadow-utils tar unzip util-linux which xz python'
+config_opts['dist'] = 'el7'  # only useful for --resultdir variable subst
+config_opts['extra_chroot_dirs'] = [ '/run/lock', ]
+config_opts['releasever'] = '7'
+
+config_opts['yum.conf'] = """
+[main]
+keepcache=0
+debuglevel=1
+reposdir=/dev/null
+logfile=/var/log/yum.log
+retries=20
+obsoletes=1
+gpgcheck=0
+assumeyes=1
+syslog_ident=mock
+syslog_device=
+install_weak_deps=0
+metadata_expire=0
+
+# repos
+
+[base]
+name=centos-base
+baseurl=http://mirror.centos.org/altarch/$releasever/os/$basearch/
+failovermethod=priority
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7-aarch64
+
+[updates]
+name=updates
+baseurl=http://mirror.centos.org/altarch/$releasever/updates/$basearch/
+failovermethod=priority
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7-aarch64
+
+[extras]
+name=CentOS-$releasever - Extras
+baseurl=http://mirror.centos.org/altarch/$releasever/extras/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7-aarch64
+enabled=0
+
+[epel]
+name=epel
+mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=epel-7&amp;arch=aarch64
+failovermethod=priority
+gpgkey=file:///etc/pki/mock/RPM-GPG-KEY-EPEL-7
+gpgcheck=1
+
+[kraxel-qcom-rpi3-public]
+name=kraxels qcom dragonboard / rpi3 rpms [public]
+baseurl=https://www.kraxel.org/repos/qcom/
+gpgcheck=0
+enabled=1
+
+[local]
+name=local
+baseurl=http://armpkgs.fedoraproject.org/repos/f23-build/latest/aarch64/
+cost=2000
+enabled=0
+"""</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You really need to enable EPEL here, because that&#8217;s where mock can pull ccache from. Also, I added the kraxel repository to this a long time ago, but I can&#8217;t really remember why :)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_specfile">The specfile</h3>
+<div class="paragraph">
+<p>Nothing really spectacular here. Just go to <a href="http://vault.centos.org/" class="bare">http://vault.centos.org/</a> and download that latest source RPM for ipa-server. At the time of writing, this is the <a href="http://vault.centos.org/centos/7.3.1611/updates/Source/SPackages/ipa-4.4.0-14.el7.centos.7.src.rpm">latest version</a>.</p>
+</div>
+<div class="paragraph">
+<p>Install the source RPM as an unpriviliged user and enter the newly created ~/rpmbuild/SPECS directory. Open the ipa.spec and make sure you edit the following lines.</p>
+</div>
+<div class="paragraph">
+<p>Edit the line reading <code>%ifarch x86_64 %{ix86}</code> to read <code>%ifarch x86_64 %{ix86} aarch64</code>. In the version of the specfile I&#8217;m working with, that is line 12.</p>
+</div>
+<div class="paragraph">
+<p>Edit the line reading <code>Release:       14%{?dist}.7</code> to read <code>Release:        14%{?dist}.7identifier</code>. I usually use <code>maxim</code> as my identifier. You need add this to distinguish your version of the resulting RPMs (e.g. ipa-client) from the version supplied by the official repositories.<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup> This is at line 46 in my specfile.</p>
+</div>
+<div class="paragraph">
+<p>Then, finally, add a new entry in the <code>%changelog</code> section (starting at line 1551 for me). Make sure you reference the right version of the RPM. My last one looks like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>* Mon Jul 10 2017 Maxim Burgerhout &lt;maxim@redhat.com&gt; - 4.4.0-14.el7.centos.7maxim
+- Enable ipa-server on aarch64</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_the_source_rpm">Creating the source RPM</h3>
+<div class="paragraph">
+<p>This part is easy. From the ~/rpmbuild/SPECS directory, just run <code>rpmbuild -bs ipa.spec</code>. An SRPM package will be available in ~/rpmbuild/SRPMS afterwards.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_building_the_actual_rpms">Building the actual RPMs</h3>
+<div class="paragraph">
+<p>We want to use mock to build our RPMs, so I would call this command. Change for your username and identifier:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>mock -r epel-7-aarch64 /home/maxim/rpmbuild/SRPMS/ipa-4.4.0-14.el7.centos.7maxim.src.rpm</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installing_the_results">Installing the results</h3>
+<div class="paragraph">
+<p>After building (which will take a while), the resulting RPMs will be available in <code>/var/lib/mock/centos-7-aarch64/result</code>. I usually go in there and run <code>sudo createrepo .</code> and then add a ipa.repo configuration file to /etc/yum.repos.d that reads:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[ipa]
+name=CentOS-$releasever - IPA
+baseurl=file:///var/lib/mock/centos-7-aarch64/result
+gpgcheck=0</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That allows me to use yum to install everything and solve dependencies for me.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_profit">Profit!</h3>
+<div class="paragraph">
+<p>This may not be useful for everyone, but for me, it&#8217;s great to have an FreeIPA / IdM server running on my RPi3 :)</p>
+</div>
+<div class="paragraph">
+<p>This blog is as much for me (as I tend to forget how I built it the last time around) as it is for anyone else looking to run FreeIPA / IdM on an RPi3. Enjoy!</p>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnote_1">
+<a href="#_footnoteref_1">1</a>. Obviously, the version numbers you see here are specific to the version of the specfile I&#8217;m using right now.
+</div>
+</div>]]></description><link>http://100things.wzzrd.com/2017/07/10/Building-ipa-server-for-aarch64-on-a-Raspberry-Pi-3-and-CentO-S.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2017/07/10/Building-ipa-server-for-aarch64-on-a-Raspberry-Pi-3-and-CentO-S.html</guid><category><![CDATA[centos]]></category><category><![CDATA[freeipa]]></category><category><![CDATA[idm]]></category><category><![CDATA[mock]]></category><category><![CDATA[rpm]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Mon, 10 Jul 2017 00:00:00 GMT</pubDate></item><item><title><![CDATA[Open source is the most important motor for innovation]]></title><description><![CDATA[<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Recently, during the OpenTechDay in Utrecht, I had the opportunity to share my passion for open source. Since I didn’t need to convince the open source audience, I decided instead to focus on the open source success story. How far have we come since the beginning and where are we going? I think we, as a community, should be proud of the huge success of open source and also its ability to capture the cloud.</p>
@@ -44,7 +212,7 @@ start using this innovation engine right now.</p>
 <div class="paragraph">
 <p>This blog was also published on <a href="https://www.linkedin.com/pulse/open-source-most-important-motor-innovation-maxim-burgerhout">LinkedIn</a> and <a href="https://www.computable.nl/artikel/blogs/opensource/6050245/5260614/opensource-is-belangrijkste-motor-voor-innovatie.html">Computable</a> (in Dutch).</p>
 </div>
-</div>]]></description><link>http://100things.wzzrd.com/2017/07/04/Open-source-is-the-most-important-motor-for-innovation.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2017/07/04/Open-source-is-the-most-important-motor-for-innovation.html</guid><category><![CDATA[Open_Source]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Tue, 04 Jul 2017 00:00:00 GMT</pubDate></item><item><title><![CDATA[Creating screencasts on Linux]]></title><description><![CDATA[<div class="sect2">
+</div>]]></description><link>http://100things.wzzrd.com/2017/07/04/Open-source-is-the-most-important-motor-for-innovation.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2017/07/04/Open-source-is-the-most-important-motor-for-innovation.html</guid><category><![CDATA[Open source]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Tue, 04 Jul 2017 00:00:00 GMT</pubDate></item><item><title><![CDATA[Creating screencasts on Linux]]></title><description><![CDATA[<div class="sect2">
 <h3 id="_intro">Intro</h3>
 <div class="paragraph">
 <p>As this is a new blog on Fedora Planet, let me start off by introducing myself briefly. My name is Maxim Burgerhout, and I have been a Fedora contributor for quite some time. Truth be told though, I haven&#8217;t been able to spend much time maintaining my packages over the past couple of years. As a different way of giving back, I want to start sharing some experiences with open source software in a specific niche: screencast creation, and video editing.</p>
