@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 10 Jul 2017 08:47:25 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Building ipa-server for aarch64 on a Raspberry Pi 3 and CentOS7]]></title><description><![CDATA[<div class="sect2">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 10 Jul 2017 08:49:35 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Building ipa-server for aarch64 on a Raspberry Pi 3 and CentOS7]]></title><description><![CDATA[<div class="sect2">
 <h3 id="_what">What?</h3>
 <div class="paragraph">
 <p>I want to run IPA server (FreeIPA, IdM) on my Raspberry Pi 3. This allows me to connect Satellite servers, Ansible Tower servers and whatnot to an instance of IdM that I don&#8217;t have to setup everytime, is always running and is actually used.</p>
@@ -144,7 +144,7 @@ enabled=0
 <div class="content">
 <pre>[ipa]
 name=CentOS-$releasever - IPA
-baseurl=file:///var/lib/mock/centos-7-aarch64/result
+baseurl=file:///var/lib/mock/epel-7-aarch64/result
 gpgcheck=0</pre>
 </div>
 </div>
