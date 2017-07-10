@@ -1,0 +1,144 @@
+= Building ipa-server for aarch64 on a Raspberry Pi 3 and CentOS7
+:published_at: 2017-07-10
+:hp-tags: centos, freeipa, idm, mock, rpm
+
+=== What?
+I want to run IPA server (freeipa-server, IdM) on my Raspberry Pi 3. This allows me to connect Satellite servers, Ansible Tower servers and whatnot to an instance of IdM that I don't have to setup everytime, is always running and is actually used.
+
+=== Is there a problem?
+A bit. The specfile for ipa-server has a line reading `%ifarch x86_64 %{ix86}`. This will prevent building ipa-server on any platform except for x86_64. I'm not sure why this is, but it means I have to build the RPM myself.
+
+=== The setup
+My RPi3 runs CentOS7 for aarch64, based on the image that is available for download https://www.kraxel.org/repos/images/arm64-rpi3-centos7-mainline-20160803.raw.xz[here]. All in all, it works pretty well, with some caveats. One of those caveats is that the standard mock RPM doesn't provide a configuration file for aarch64. 
+
+Hence, if you want to start using mock to build RPMs on your RPi3, create a file called `epel-7-aarch.cfg` or `centos-7-aarch` and put the following content in it:
+
+....
+config_opts['root'] = 'epel-7-aarch64'
+config_opts['target_arch'] = 'aarch64'
+config_opts['legal_host_arches'] = ('aarch64',)
+config_opts['chroot_setup_cmd'] = 'install bash bzip2 coreutils cpio diffutils fedora-release findutils gawk gcc gcc-c++ grep gzip info make patch redhat-rpm-config rpm-build sed shadow-utils tar unzip util-linux which xz python'
+config_opts['dist'] = 'el7'  # only useful for --resultdir variable subst
+config_opts['extra_chroot_dirs'] = [ '/run/lock', ]
+config_opts['releasever'] = '7'
+
+config_opts['yum.conf'] = """
+[main]
+keepcache=0
+debuglevel=1
+reposdir=/dev/null
+logfile=/var/log/yum.log
+retries=20
+obsoletes=1
+gpgcheck=0
+assumeyes=1
+syslog_ident=mock
+syslog_device=
+install_weak_deps=0
+metadata_expire=0
+
+# repos
+
+[base]
+name=centos-base
+baseurl=http://mirror.centos.org/altarch/$releasever/os/$basearch/
+failovermethod=priority
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7-aarch64
+
+[updates]
+name=updates
+baseurl=http://mirror.centos.org/altarch/$releasever/updates/$basearch/
+failovermethod=priority
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7-aarch64
+
+[extras]
+name=CentOS-$releasever - Extras
+baseurl=http://mirror.centos.org/altarch/$releasever/extras/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+       file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7-aarch64
+enabled=0
+
+[epel]
+name=epel
+mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=epel-7&arch=aarch64
+failovermethod=priority
+gpgkey=file:///etc/pki/mock/RPM-GPG-KEY-EPEL-7
+gpgcheck=1
+
+[kraxel-qcom-rpi3-public]
+name=kraxels qcom dragonboard / rpi3 rpms [public]
+baseurl=https://www.kraxel.org/repos/qcom/
+gpgcheck=0
+enabled=1
+
+[local]
+name=local
+baseurl=http://armpkgs.fedoraproject.org/repos/f23-build/latest/aarch64/
+cost=2000
+enabled=0
+"""
+....
+ 
+You really need to enable EPEL here, because that's where mock can pull ccache from. Also, I added the kraxel repository to this a long time ago, but I can't really remember why :)
+
+=== The specfile
+Nothing really spectacular here. Just go to http://vault.centos.org/ and download that latest source RPM for ipa-server. At the time of writing, this is the http://vault.centos.org/centos/7.3.1611/updates/Source/SPackages/ipa-4.4.0-14.el7.centos.7.src.rpm[latest version].
+
+Install the source RPM as an unpriviliged user and enter the newly created ~/rpmbuild/SPECS directory. Open the ipa.spec and make sure you edit the following lines.
+
+Edit the line reading `%ifarch x86_64 %{ix86}` to read `%ifarch x86_64 %{ix86} aarch64`. In the version of the specfile I'm working with, that is line 12.
+
+Edit the line reading `Release:       14%{?dist}.7` to read `Release:        14%{?dist}.7identifier`. I usually use `maxim` as my identifier. You need add this to distinguish your version of the resulting RPMs (e.g. ipa-client) from the version supplied by the official repositories.footnote:[Obviously, the version numbers you see here are specific to the version of the specfile I'm using right now.] This is at line 46 in my specfile.
+
+Then, finally, add a new entry in the `%changelog` section (starting at line 1551 for me). Make sure you reference the right version of the RPM. My last one looks like this:
+
+....
+* Mon Jul 10 2017 Maxim Burgerhout <maxim@redhat.com> - 4.4.0-14.el7.centos.7maxim
+- Enable ipa-server on aarch64
+....
+
+=== Creating the source RPM
+This part is easy. From the ~/rpmbuild/SPECS directory, just run `rpmbuild -bs ipa.spec`. An SRPM package will be available in ~/rpmbuild/SRPMS afterwards.
+
+=== Building the actual RPMs
+We want to use mock to build our RPMs, so I would call this command. Change for your username and identifier:
+
+....
+mock -r epel-7-aarch64 /home/maxim/rpmbuild/SRPMS/ipa-4.4.0-14.el7.centos.7maxim.src.rpm
+....
+
+=== Installing the results
+After building (which will take a while), the resulting RPMs will be available in `/var/lib/mock/centos-7-aarch64/result`. I usually go in there and run `sudo createrepo .` and then add a ipa.repo configuration file to /etc/yum.repos.d that reads:
+
+....
+[ipa]
+name=CentOS-$releasever - IPA
+baseurl=file:///var/lib/mock/centos-7-aarch64/result
+gpgcheck=0
+....
+
+That allows me to use yum to install everything and solve dependencies for me.
+
+=== Profit!
+This may not be useful for everyone, but for me, it's great to have an FreeIPA / IdM server running on my RPi3 :)
+
+This blog is as much for me (as I tend to forget how I built it the last time around) as it is for anyone else looking to run FreeIPA / IdM on an RPi3. Enjoy!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
