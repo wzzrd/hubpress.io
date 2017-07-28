@@ -1,0 +1,15 @@
+= Demystifying Activation Keys	
+:published_at: 2017-07-28
+:hp-tags: satellite6, youtube, virt-who, vdc, subscriptions, activation keys
+
+In my daily work as a solutions architect for Red Hat, I regularly talk about Satellite 6 and explain to people how activation keys work, and how to best assign subscriptions to newly created virtual or physical machines.
+
+Setting up activation keys is not rocket science, but I have learned that there are some misunderstandings around it, and I though it would make sense to create a short video about it.
+
+(Now, when I say "short", I mean that I have *tried* to keep it short, not that I have actually succeeded in doing that. The video in this case is about 10 minutes in length, which still counts as short-ish, I hope.)
+
+If you are interested in this topic, take a look at the video below
+
+video::byIf3Vb8sS0[youtube]
+
+The video itself is based of an article written by Rich Jerrido, which you can find https://access.redhat.com/blogs/1169563/posts/2867891[here]. It has some more in-depth information, where the video mostly shows examples.
