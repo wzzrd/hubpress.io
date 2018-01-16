@@ -1,6 +1,12 @@
-= Command_Line Heroes
+= Command Line Heroes
 :hp-image: /covers/cover.png
 :published_at: 2018-01-16
-:hp-tags: podcast, open source, red hat
+:hp-tags: podcast, open source, red hat, WomenInTech
 
+I've been looking forward to this for quite a while, ever since it was announced: today, the first two episodes of Command Line Heroes were published. Command Line Heroes, or CLH for short, is a series of podcasts that tells the stories of open source. It's hosted by Saron Yitbarek, of CodeNewbie fame, and sponsored by Red Hat.
 
+The podcast is not about how to create an alias in Bash, or how to generate a CSR with openssl. It is about the history of Linux, open source, devops and cloud.
+
+If you're a geek, a hacker, a developer, a programmer, or any other sort of passionat open source builder, maker, or user, you'll definitely want to look into this. 
+
+You can sign up for the newletter around Command Line Heroes https://www.redhat.com/en/command-line-heroes[here], or just pull the https://feeds.pacific-content.com/commandlineheroes[RSS feed] into your favorite podcast client.
