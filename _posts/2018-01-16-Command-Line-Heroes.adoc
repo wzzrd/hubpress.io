@@ -9,4 +9,6 @@ The podcast is not about how to create an alias in Bash, or how to generate a CS
 
 If you're a geek, a hacker, a developer, a programmer, or any other sort of passionat open source builder, maker, or user, you'll definitely want to look into this. 
 
+The first episode is about the OS wars of the 80s and how Linux came to be. I'm listening to it right now, and it's worth every second :)
+
 You can sign up for the newletter around Command Line Heroes https://www.redhat.com/en/command-line-heroes[here], or just pull the https://feeds.pacific-content.com/commandlineheroes[RSS feed] into your favorite podcast client.
