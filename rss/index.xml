@@ -1,4 +1,72 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Tue, 16 Jan 2018 07:56:21 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Command Line Heroes]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Sun, 28 Jan 2018 10:50:01 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA["User-friendly" Windows]]></title><description><![CDATA[<div class="sect1">
+<h2 id="_this_is_a_rant">This is a rant</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you are not into rants, go away now.</p>
+</div>
+<div class="paragraph">
+<p>So for some app my kids want to use, I needed to setup Windows. And a printer. I have a Samsung M2070W, and I have had it for years. It has not always been easy to use (hell no!), but it generally works after a few kicks in the groin.</p>
+</div>
+<div class="paragraph">
+<p>I&#8217;ve used it with my iPad, with various Android devices, and various Linux distributions. And now, I needed to set it up in Windows.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_finding_the_right_software">Finding the right software</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I go to the Samung website to download drivers. Samsung seems to have sold it&#8217;s printer business to HP. I go to HP&#8217;s website. I search for my printer, and I get four different packages (one 'universal driver, one eco driver, one printer specific driver labeled 'no installer', and one printer specific driver without any additional information) I can choose from.</p>
+</div>
+<div class="paragraph">
+<p>I don&#8217;t know which one to use, so I download them all.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_welcome_to_hell">Welcome to hell</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now here&#8217;s the really annoying bit. No matter what I do, the drivers keep telling me there&#8217;s no printer in the network they can work with.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s basically a repetition of 'nope, no printers here', in, in the best case: 'hey, there&#8217;s a printer here, oh wait no there isn&#8217;t, oh wait yes there is, but I cannot use it'.</p>
+</div>
+<div class="paragraph">
+<p>I can open the printer&#8217;s management page in my browser, I can connect to it through the app, but any and all drivers keep telling me 'nope, no printers here, move along', or something along the lines of 'device cannot be identified'.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_force_install">Force install!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As the final resort, I told it to skip detecting the printer, and just install what I told it to install.</p>
+</div>
+<div class="paragraph">
+<p>Want to know how that went? Driver got installed, I went to the 'add printer' page, and search for a printer. A printer is found just fine, but Windows then tells me 'driver unavaible' and we&#8217;re back to square one.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_solution_snm_f_ing_p">The solution: SNM-f***ing-P</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I kid you not. You know what needed to be done on the printer to finally enable using it through Windows, in a semi-stable fashion? Enable SNMP on it. I turned that off at some point, I think (or maybe it&#8217;s not on by default, I don&#8217;t know), but without SNMP, no printer detection on Windows. It works fine on Android and iOS and on Linux, but not on Windows. FFS.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_microsoft_s_fault">Microsoft&#8217;s fault?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I don&#8217;t know. This driver mess is probably more Samsung&#8217;s than Microsoft&#8217;s fault, I guess. Unless you count the fact that many devices need vendor drivers to begin with, because Windows doesn&#8217;t ship with them.</p>
+</div>
+<div class="paragraph">
+<p>Well anyway, luckily, Linux seems to identify and use my printer just fine. With or without SNMP on the printer. Now where&#8217;s that reboot button&#8230;&#8203;</p>
+</div>
+</div>
+</div>]]></description><link>http://100things.wzzrd.com/2018/01/28/User-friendly-Windows.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2018/01/28/User-friendly-Windows.html</guid><category><![CDATA[Windows]]></category><category><![CDATA[Printing]]></category><category><![CDATA[DriverHell]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Sun, 28 Jan 2018 00:00:00 GMT</pubDate></item><item><title><![CDATA[Command Line Heroes]]></title><description><![CDATA[<div class="paragraph">
 <p>I&#8217;ve been looking forward to this for quite a while, ever since it was announced: today, the first two episodes of Command Line Heroes were published. Command Line Heroes, or CLH for short, is a series of podcasts that tells the stories of open source. It&#8217;s hosted by Saron Yitbarek, of CodeNewbie fame, and sponsored by Red Hat.</p>
 </div>
 <div class="paragraph">
