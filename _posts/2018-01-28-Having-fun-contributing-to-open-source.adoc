@@ -1,0 +1,36 @@
+= Having fun contributing to open source
+:hp-image: https://www.linkedin.com/mpr/mpr/AAMAAgDGAAgAAQAAAAAAAA9dAAAAJGI4MWZjNmUzLWYxYmQtNGY2MC05YjY5LTRiYTBkNGIzNWJkOA.png
+:published_at: 2018-01-28
+:hp-tags: opensource, satellite6, lifeatredhat, katello-client-bootstrap, youtube
+
+(This blog was first published on LinkedIn.)
+
+Here's something I'm a little bit proud of: I have written an actual feature for Satellite 6, and that feature was merged today!
+
+As you might know, Satellite 6's upstream is in a combination of multiple products, most notably Katello and Foreman. There is a bit of client side tooling that goes with Katello and Foreman called katello-client-bootstrap.
+
+Katello-client-bootstrap is a Python script called bootstrap.py that makes it easy to connect existing systems to Katello and Foreman (and thus Satellite 6), which is why it is shipped as part of the official product.
+
+Over the past couple of months, I've been working with Satellite product management and engineering (specifically Rich Jerrido and Evgeni Golov) to get a patch I've written merged into that script.
+
+This https://github.com/Katello/katello-client-bootstrap/pull/227[patch] makes it possible to move an existing system from one internal or external Capsule to another (within the same infrastructure), without loosing it's subscription or other configuration options. It's part of the new 1.5.0 version of katello-client-bootstrap that was http://www.outsidaz.org/2018/01/23/katello-client-bootstrap-1-5-0-released/[released] today.
+
+Of course, I'm very happy to re-enforce my hacker credibility, and talk about that, but I mainly wanted to write this article to share some of the experiences related to writing a feature / patch for an open source project and what it takes to get it merged.
+
+In the category "things I have learned while contributing to open source", we have:
+
+. Don't be afraid to start from scratch if your code doesn't fit the master branch anymore, or has suffered from other forms of bit rot. Sometimes, it's easier to start over than to try and mash your changes into a vastly changed master branch.
+. Don't give up. I started this patch set in March of 2017, and I started over from scratch in the Fall of 2017. Along the way, I had to incorporate a million comments. In the end though, getting feedback is what open source is all about, and everyone just wants what is best for the project. Just keep pushing forward. Listen to the feedback. You'll get there.
+. Talk to the project maintainers. This was relatively easy for me, because I personally know the people who maintain katello-bootstrap-client, but still, it's important to explain what it is you are trying to get merged, why your code behaves the way it does, etc. This makes it a lot easier to get people to review your pull request and give you valuable feedback.
+. Learn git. In this day and ago, git is the tool for version control. If you want to contribute to any project whatsoever, you need to learn git. Learn branching, rebasing, squashing and writing decent commit messages (see #3).
+. Finally, adhere to the project's coding standards, and use the project's testing framework, preferably before you commit. In my case, just running the 'pep8' tool on my code helped a lot in making the Travis CI tool happy.
+
+But above all: have fun! Contributing to open source can be very rewarding, and it's a fun way to do something different outside of your normal, everyday routine :)
+
+This was not my first patch to an open source project, but I think it was a fairly significant one. I'm looking forward to merging more in the future! :)
+
+A video with an overview and demo of the new feature is available on YouTube:
+
+video::h-wonjChaxI[youtube]
+
+
