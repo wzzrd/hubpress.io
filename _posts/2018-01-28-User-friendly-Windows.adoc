@@ -1,0 +1,46 @@
+= "User-friendly" Windows
+:published_at: 2018-01-28
+:hp-tags: Windows, Printing, DriverHell
+
+== This is a rant
+
+If you are not into rants, go away now.
+
+So for some app my kids want to use, I needed to setup Windows. And a printer. I have a Samsung M2070W, and I have had it for years. It has not always been easy to use (hell no!), but it generally works after a few kicks in the groin.
+
+I've used it with my iPad, with various Android devices, and various Linux distributions. And now, I needed to set it up in Windows.
+
+== Finding the right software
+
+I go to the Samung website to download drivers. Samsung seems to have sold it's printer business to HP. I go to HP's website. I search for my printer, and I get four different packages (one 'universal driver, one eco driver, one printer specific driver labeled 'no installer', and one printer specific driver without any additional information) I can choose from. 
+
+I don't know which one to use, so I download them all. 
+
+== Welcome to hell
+
+Now here's the really annoying bit. No matter what I do, the drivers keep telling me there's no printer in the network they can work with.
+
+It's basically a repetition of 'nope, no printers here', in, in the best case: 'hey, there's a printer here, oh wait no there isn't, oh wait yes there is, but I cannot use it'.
+
+I can open the printer's management page in my browser, I can connect to it through the app, but any and all drivers keep telling me 'nope, no printers here, move along', or something along the lines of 'device cannot be identified'.
+
+== Force install!
+
+As the final resort, I told it to skip detecting the printer, and just install what I told it to install.
+
+Want to know how that went? Driver got installed, I went to the 'add printer' page, and search for a printer. A printer is found just fine, but Windows then tells me 'driver unavaible' and we're back to square one.
+
+== The solution: SNM-f***ing-P
+
+I kid you not. You know what needed to be done on the printer to finally enable using it through Windows, in a semi-stable fashion? Enable SNMP on it. I turned that off at some point, I think (or maybe it's not on by default, I don't know), but without SNMP, no printer detection on Windows. It works fine on Android and iOS and on Linux, but not on Windows. FFS. 
+
+== Microsoft's fault?
+
+I don't know. This driver mess is probably more Samsung's than Microsoft's fault, I guess. Unless you count the fact that many devices need vendor drivers to begin with, because Windows doesn't ship with them.
+
+Well anyway, luckily, Linux seems to identify and use my printer just fine. With or without SNMP on the printer. Now where's that reboot button...
+
+
+
+
+
