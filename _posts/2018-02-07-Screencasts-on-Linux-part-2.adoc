@@ -1,0 +1,31 @@
+= Screencasts on Linux, part 2
+:published_at: 2018-02-07
+:hp-tags: video editing, open source
+
+A while back, I wrote a http://100things.wzzrd.com/2017/06/21/Creating-screencasts-on-Linux.html[post] comparing some screencasting and video editing software on Linux.
+
+I that post, I mentioned a couple of video editing programs that are available, and basically noted that - as far as video editing is concerned - things were painful on Linux, at least for me.
+
+Well, no more, it seems. I seem to have missed a beautiful, functional, easy to use, and relatively fast one, called https://jliljebl.github.io/flowblade/[Flowblade].
+
+I had never heard of it, and I haven't seen it mentioned on any of the sites I looked for video editing software reviews on. I only ran into it while browsing the available Flatpaks on https://flathub.org/apps/[Flathub]. However, it has been in development for a couple of years, and it's development seems active, though a bit dependent on a single coder.
+
+Having said that, I tip my hat to that single coder, who goes by the name of https://github.com/jliljebl[jliljebl], because this software is A-MA-ZING!
+
+I'm not a professional video editor, so I've always struggled with other open source video editing software, and LightWorks, though good, is a bit steep for my occasional screencast editing, and not open source. (As an added problem, most of the open source video editing software crashed for me. They all crashed, all the time. That made me a sad panda.)
+
+Flowblade, however, is easy. All the required functionality is readily available, without having to jump through hoops or having to know all kinds of funky lingo. For things that were not immediately obvious to me (again: I'm still a noob in video editing), short tutorial videos are abundant on Youtube.
+
+All in all, if you are looking for a good, open source video editor, that's really easy to use and does actually not crash all the time (which was a novelty as well!), take a look at Flowblade. 
+
+It's like drinking a frothy mixture of rainbow juice and happy pills, topped with sprinkles of joy!
+
+image::http://100things.wzzrd.com/images/flowblade.png[]
+
+
+
+
+
+
+
+
