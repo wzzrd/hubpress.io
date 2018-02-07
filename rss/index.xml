@@ -1,128 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 29 Jan 2018 08:20:01 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA["User-friendly" Windows]]></title><description><![CDATA[<div class="sect1">
-<h2 id="_this_is_a_rant">This is a rant</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>If you are not into rants, go away now.</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Wed, 07 Feb 2018 20:30:47 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Screencasts on Linux, part 2]]></title><description><![CDATA[<div class="paragraph">
+<p>A while back, I wrote a <a href="http://100things.wzzrd.com/2017/06/21/Creating-screencasts-on-Linux.html">post</a> comparing some screencasting and video editing software on Linux.</p>
 </div>
 <div class="paragraph">
-<p>So for some app my kids want to use, I needed to setup Windows. And a printer. I have a Samsung M2070W, and I have had it for years. It has not always been easy to use (hell no!), but it generally works after a few kicks in the groin.</p>
+<p>I that post, I mentioned a couple of video editing programs that are available, and basically noted that - as far as video editing is concerned - things were painful on Linux, at least for me.</p>
 </div>
 <div class="paragraph">
-<p>I&#8217;ve used it with my iPad, with various Android devices, and various Linux distributions. And now, I needed to set it up in Windows.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_finding_the_right_software">Finding the right software</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>I go to the Samung website to download drivers. Samsung seems to have sold it&#8217;s printer business to HP. I go to HP&#8217;s website. I search for my printer, and I get four different packages (one 'universal driver, one eco driver, one printer specific driver labeled 'no installer', and one printer specific driver without any additional information) I can choose from.</p>
+<p>Well, no more, it seems. I seem to have missed a beautiful, functional, easy to use, and relatively fast one, called <a href="https://jliljebl.github.io/flowblade/">Flowblade</a>.</p>
 </div>
 <div class="paragraph">
-<p>I don&#8217;t know which one to use, so I download them all.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_welcome_to_hell">Welcome to hell</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Now here&#8217;s the really annoying bit. No matter what I do, the drivers keep telling me there&#8217;s no printer in the network they can work with.</p>
+<p>I had never heard of it, and I haven&#8217;t seen it mentioned on any of the sites I looked for video editing software reviews on. I only ran into it while browsing the available Flatpaks on <a href="https://flathub.org/apps/">Flathub</a>. However, it has been in development for a couple of years, and it&#8217;s development seems active, though a bit dependent on a single coder.</p>
 </div>
 <div class="paragraph">
-<p>It&#8217;s basically a repetition of 'nope, no printers here', in, in the best case: 'hey, there&#8217;s a printer here, oh wait no there isn&#8217;t, oh wait yes there is, but I cannot use it'.</p>
+<p>Having said that, I tip my hat to that single coder, who goes by the name of <a href="https://github.com/jliljebl">jliljebl</a>, because this software is A-MA-ZING!</p>
 </div>
 <div class="paragraph">
-<p>I can open the printer&#8217;s management page in my browser, I can connect to it through the app, but any and all drivers keep telling me 'nope, no printers here, move along', or something along the lines of 'device cannot be identified'.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_force_install">Force install!</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>As the final resort, I told it to skip detecting the printer, and just install what I told it to install.</p>
+<p>I&#8217;m not a professional video editor, so I&#8217;ve always struggled with other open source video editing software, and LightWorks, though good, is a bit steep for my occasional screencast editing, and not open source. (As an added problem, most of the open source video editing software crashed for me. They all crashed, all the time. That made me a sad panda.)</p>
 </div>
 <div class="paragraph">
-<p>Want to know how that went? Driver got installed, I went to the 'add printer' page, and search for a printer. A printer is found just fine, but Windows then tells me 'driver unavaible' and we&#8217;re back to square one.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_the_solution_snm_f_ing_p">The solution: SNM-f***ing-P</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>I kid you not. You know what needed to be done on the printer to finally enable using it through Windows, in a semi-stable fashion? Enable SNMP on it. I turned that off at some point, I think (or maybe it&#8217;s not on by default, I don&#8217;t know), but without SNMP, no printer detection on Windows. It works fine on Android and iOS and on Linux, but not on Windows. FFS.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_microsoft_s_fault">Microsoft&#8217;s fault?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>I don&#8217;t know. This driver mess is probably more Samsung&#8217;s than Microsoft&#8217;s fault, I guess. Unless you count the fact that many devices need vendor drivers to begin with, because Windows doesn&#8217;t ship with them.</p>
+<p>Flowblade, however, is easy. All the required functionality is readily available, without having to jump through hoops or having to know all kinds of funky lingo. For things that were not immediately obvious to me (again: I&#8217;m still a noob in video editing), short tutorial videos are abundant on Youtube.</p>
 </div>
 <div class="paragraph">
-<p>Well anyway, luckily, Linux seems to identify and use my printer just fine. With or without SNMP on the printer. Now where&#8217;s that reboot button&#8230;&#8203;</p>
-</div>
-</div>
-</div>]]></description><link>http://100things.wzzrd.com/2018/01/28/User-friendly-Windows.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2018/01/28/User-friendly-Windows.html</guid><category><![CDATA[Windows]]></category><category><![CDATA[Printing]]></category><category><![CDATA[DriverHell]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Sun, 28 Jan 2018 00:00:00 GMT</pubDate></item><item><title><![CDATA[Having fun contributing to open source]]></title><description><![CDATA[<div class="paragraph">
-<p>(This blog was first published on LinkedIn.)</p>
+<p>All in all, if you are looking for a good, open source video editor, that&#8217;s really easy to use and does actually not crash all the time (which was a novelty as well!), take a look at Flowblade.</p>
 </div>
 <div class="paragraph">
-<p>Here&#8217;s something I&#8217;m a little bit proud of: I have written an actual feature for Satellite 6, and that feature was merged today!</p>
+<p>It&#8217;s like drinking a frothy mixture of rainbow juice and happy pills, topped with sprinkles of joy!</p>
 </div>
-<div class="paragraph">
-<p>As you might know, Satellite 6&#8217;s upstream is in a combination of multiple products, most notably Katello and Foreman. There is a bit of client side tooling that goes with Katello and Foreman called katello-client-bootstrap.</p>
-</div>
-<div class="paragraph">
-<p>Katello-client-bootstrap is a Python script called bootstrap.py that makes it easy to connect existing systems to Katello and Foreman (and thus Satellite 6), which is why it is shipped as part of the official product.</p>
-</div>
-<div class="paragraph">
-<p>Over the past couple of months, I&#8217;ve been working with Satellite product management and engineering (specifically Rich Jerrido and Evgeni Golov) to get a patch I&#8217;ve written merged into that script.</p>
-</div>
-<div class="paragraph">
-<p>This <a href="https://github.com/Katello/katello-client-bootstrap/pull/227">patch</a> makes it possible to move an existing system from one internal or external Capsule to another (within the same infrastructure), without loosing it&#8217;s subscription or other configuration options. It&#8217;s part of the new 1.5.0 version of katello-client-bootstrap that was <a href="http://www.outsidaz.org/2018/01/23/katello-client-bootstrap-1-5-0-released/">released</a> today.</p>
-</div>
-<div class="paragraph">
-<p>Of course, I&#8217;m very happy to re-enforce my hacker credibility, and talk about that, but I mainly wanted to write this article to share some of the experiences related to writing a feature / patch for an open source project and what it takes to get it merged.</p>
-</div>
-<div class="paragraph">
-<p>In the category "things I have learned while contributing to open source", we have:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Don&#8217;t be afraid to start from scratch if your code doesn&#8217;t fit the master branch anymore, or has suffered from other forms of bit rot. Sometimes, it&#8217;s easier to start over than to try and mash your changes into a vastly changed master branch.</p>
-</li>
-<li>
-<p>Don&#8217;t give up. I started this patch set in March of 2017, and I started over from scratch in the Fall of 2017. Along the way, I had to incorporate a million comments. In the end though, getting feedback is what open source is all about, and everyone just wants what is best for the project. Just keep pushing forward. Listen to the feedback. You&#8217;ll get there.</p>
-</li>
-<li>
-<p>Talk to the project maintainers. This was relatively easy for me, because I personally know the people who maintain katello-bootstrap-client, but still, it&#8217;s important to explain what it is you are trying to get merged, why your code behaves the way it does, etc. This makes it a lot easier to get people to review your pull request and give you valuable feedback.</p>
-</li>
-<li>
-<p>Learn git. In this day and ago, git is the tool for version control. If you want to contribute to any project whatsoever, you need to learn git. Learn branching, rebasing, squashing and writing decent commit messages (see #3).</p>
-</li>
-<li>
-<p>Finally, adhere to the project&#8217;s coding standards, and use the project&#8217;s testing framework, preferably before you commit. In my case, just running the 'pep8' tool on my code helped a lot in making the Travis CI tool happy.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>But above all: have fun! Contributing to open source can be very rewarding, and it&#8217;s a fun way to do something different outside of your normal, everyday routine :)</p>
-</div>
-<div class="paragraph">
-<p>This was not my first patch to an open source project, but I think it was a fairly significant one. I&#8217;m looking forward to merging more in the future! :)</p>
-</div>
-<div class="paragraph">
-<p>A video with an overview and demo of the new feature is available on YouTube:</p>
-</div>
-<div class="videoblock">
+<div class="imageblock">
 <div class="content">
-<iframe src="https://www.youtube.com/embed/h-wonjChaxI?rel=0" frameborder="0" allowfullscreen></iframe>
+<img src="http://100things.wzzrd.com/images/flowblade.png" alt="flowblade.png">
 </div>
-</div>]]></description><link>http://100things.wzzrd.com/2018/01/28/Having-fun-contributing-to-open-source.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2018/01/28/Having-fun-contributing-to-open-source.html</guid><category><![CDATA[opensource]]></category><category><![CDATA[satellite6]]></category><category><![CDATA[lifeatredhat]]></category><category><![CDATA[katello-client-bootstrap]]></category><category><![CDATA[youtube]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Sun, 28 Jan 2018 00:00:00 GMT</pubDate></item><item><title><![CDATA[Command Line Heroes]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>http://100things.wzzrd.com/2018/02/07/Screencasts-on-Linux-part-2.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2018/02/07/Screencasts-on-Linux-part-2.html</guid><category><![CDATA[video editing]]></category><category><![CDATA[open source]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Wed, 07 Feb 2018 00:00:00 GMT</pubDate></item><item><title><![CDATA[Command Line Heroes]]></title><description><![CDATA[<div class="paragraph">
 <p>I&#8217;ve been looking forward to this for quite a while, ever since it was announced: today, the first two episodes of Command Line Heroes were published. Command Line Heroes, or CLH for short, is a series of podcasts that tells the stories of open source. It&#8217;s hosted by Saron Yitbarek, of CodeNewbie fame, and sponsored by Red Hat.</p>
 </div>
 <div class="paragraph">
