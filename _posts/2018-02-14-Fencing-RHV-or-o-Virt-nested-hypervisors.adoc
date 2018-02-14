@@ -1,5 +1,5 @@
 = Fencing RHV or oVirt nested hypervisors 
-:published_at: 2017-09-21
+:published_at: 2018-02-14
 :hp-tags: RHV, oVirt, fencing, virtualbmc, libvirt
 
 == My setup
