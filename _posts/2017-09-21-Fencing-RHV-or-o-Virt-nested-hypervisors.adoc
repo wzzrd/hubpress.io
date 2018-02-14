@@ -4,3 +4,98 @@
 
 == My setup
 
+I have this nice AMD Ryzen ThreadRipper, with 64GiB or RAM. What I want to do is run RHV 4.1 in virtual machines, and be able to play around with nested virtualization, HA and fencing.
+
+Problem is, that my virtual machines will live on libvirt, and VMs on libvirt do not have IPMI interfaces.
+
+== The solution
+
+Enter virtualbmc! Stemming from the OpenStack project, virtualbmc is a small Python program that allows you to connect a virtual BMC interface to some of your VMs.
+
+The way it works, is as follows:
+
+You enable my copr, like njah:
+
+[source]
+----
+$ sudo dnf copr enable wzzrd/virtualbmc
+----
+
+and then you install the actual program, like njah:
+
+[source]
+----
+sudo dnf install python2-virtualbmc python-virtualbmc-doc
+----
+
+Virtualbmc will create a virtual BMC device for each VM you configure it for. If you, like me, want to have all BMC interfaces on the gateway of your virtual network, you need to choose a unique port for each virtual BMC interface. More below.
+ 
+=== Configuring virtualbmc 
+ 
+Now you have to add virtual BMC interfaces to the VMs you want to control. For this, you need to pass the name of your VM, an address to bind to (optionally), a port to listen on, and a username and password to control the BMC.
+
+As said, I want all virtual BMCs to live on my virtual network gateway, 192.168.122.1, so I create the virtual BMC devices like njah:
+
+[source]
+----
+$ sudo vbmc add rhv-node-01.deployment6.lan --address 192.168.122.1 --port 7001 --username root --password foobar
+$ sudo vbmc add rhv-node-02.deployment6.lan --address 192.168.122.1 --port 7001 --username root --password foobar
+----
+
+My hypervisor VMs (the so-called L1 machines), are obviously called rhv-node-01.deployment6.lan and rhv-node-02.deployment6.lan.
+
+=== Starting the virtual BMCs
+
+After creating the interfaces, we can see them, like njah:
+
+[source]
+----
+$ sudo vbmc list
++-----------------------------+--------+---------------+------+
+|         Domain name         | Status |    Address    | Port |
++-----------------------------+--------+---------------+------+
+| rhv-node-01.deployment6.lan |  down  | 192.168.122.1 | 7001 |
+| rhv-node-02.deployment6.lan |  down  | 192.168.122.1 | 7002 |
++-----------------------------+--------+---------------+------+
+----
+
+And we can then start them to be used in RHV:
+
+[source]
+----
+sudo vbmc start rhv-node-01.deployment6.lan
+sudo vbmc start rhv-node-02.deployment6.lan
+----
+
+Which gives us njah:
+
+[source]
+----
+$ sudo vbmc list
++-----------------------------+--------+------------------+------+
+|         Domain name         |   Status  |    Address    | Port |
++-----------------------------+-----------+---------------+------+
+| rhv-node-01.deployment6.lan |  running  | 192.168.122.1 | 7001 |
+| rhv-node-02.deployment6.lan |  running  | 192.168.122.1 | 7002 |
++-----------------------------+--------+------------------+------+
+----
+
+=== Configuring power management for the RHV nodes
+
+Now, start your VMs, and in RHVM, go into the power management interface for each hypervisor, and do the following:
+
+ - Add a power management interface of type IPMILAN.
+ - As the IP, pass the 192.168.122.1 the we used above (or your equivalent)
+ - As the username and password, pass the values we used above
+ - Now here comes the tricky bit: in the options field, for each hypervisor, add:
+ 
+----
+ipport=7001,lanplus=1
+----
+
+Change the port to reflect the port you have configured for this VM. 
+
+It took me quite a bit of time to figure out the right options here. Hope this saves someone else a bunch of time!
+
+Happy testing!
+
