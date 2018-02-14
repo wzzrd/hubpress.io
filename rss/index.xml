@@ -1,49 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Wed, 14 Feb 2018 10:29:39 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Screencasts on Linux, part 2]]></title><description><![CDATA[<div class="paragraph">
-<p>A while back, I wrote a <a href="http://100things.wzzrd.com/2017/06/21/Creating-screencasts-on-Linux.html">post</a> comparing some screencasting and video editing software on Linux.</p>
-</div>
-<div class="paragraph">
-<p>I that post, I mentioned a couple of video editing programs that are available, and basically noted that - as far as video editing is concerned - things were painful on Linux, at least for me.</p>
-</div>
-<div class="paragraph">
-<p>Well, no more, it seems. I seem to have missed a beautiful, functional, easy to use, and relatively fast one, called <a href="https://jliljebl.github.io/flowblade/">Flowblade</a>.</p>
-</div>
-<div class="paragraph">
-<p>I had never heard of it, and I haven&#8217;t seen it mentioned on any of the sites I looked for video editing software reviews on. I only ran into it while browsing the available Flatpaks on <a href="https://flathub.org/apps/">Flathub</a>. However, it has been in development for a couple of years, and it&#8217;s development seems active, though a bit dependent on a single coder.</p>
-</div>
-<div class="paragraph">
-<p>Having said that, I tip my hat to that single coder, who goes by the name of <a href="https://github.com/jliljebl">jliljebl</a>, because this software is A-MA-ZING!</p>
-</div>
-<div class="paragraph">
-<p>I&#8217;m not a professional video editor, so I&#8217;ve always struggled with other open source video editing software, and LightWorks, though good, is a bit steep for my occasional screencast editing, and not open source. (As an added problem, most of the open source video editing software crashed for me. They all crashed, all the time. That made me a sad panda.)</p>
-</div>
-<div class="paragraph">
-<p>Flowblade, however, is easy. All the required functionality is readily available, without having to jump through hoops or having to know all kinds of funky lingo. For things that were not immediately obvious to me (again: I&#8217;m still a noob in video editing), short tutorial videos are abundant on Youtube.</p>
-</div>
-<div class="paragraph">
-<p>All in all, if you are looking for a good, open source video editor, that&#8217;s really easy to use and does actually not crash all the time (which was a novelty as well!), take a look at Flowblade.</p>
-</div>
-<div class="paragraph">
-<p>It&#8217;s like drinking a frothy mixture of rainbow juice and happy pills, topped with sprinkles of joy!</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="http://100things.wzzrd.com/images/flowblade.png" alt="flowblade.png">
-</div>
-</div>]]></description><link>http://100things.wzzrd.com/2018/02/07/Screencasts-on-Linux-part-2.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2018/02/07/Screencasts-on-Linux-part-2.html</guid><category><![CDATA[video editing]]></category><category><![CDATA[open source]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Wed, 07 Feb 2018 00:00:00 GMT</pubDate></item><item><title><![CDATA[Command Line Heroes]]></title><description><![CDATA[<div class="paragraph">
-<p>I&#8217;ve been looking forward to this for quite a while, ever since it was announced: today, the first two episodes of Command Line Heroes were published. Command Line Heroes, or CLH for short, is a series of podcasts that tells the stories of open source. It&#8217;s hosted by Saron Yitbarek, of CodeNewbie fame, and sponsored by Red Hat.</p>
-</div>
-<div class="paragraph">
-<p>The podcast is not about how to create an alias in Bash, or how to generate a CSR with openssl. It is about the history of Linux, open source, devops and cloud.</p>
-</div>
-<div class="paragraph">
-<p>If you&#8217;re a geek, a hacker, a developer, a programmer, or any other sort of passionat open source builder, maker, or user, you&#8217;ll definitely want to look into this.</p>
-</div>
-<div class="paragraph">
-<p>The first episode is about the OS wars of the 80s and how Linux came to be. I&#8217;m listening to it right now, and it&#8217;s worth every second :)</p>
-</div>
-<div class="paragraph">
-<p>You can sign up for the newletter around Command Line Heroes <a href="https://www.redhat.com/en/command-line-heroes">here</a>, or just pull the <a href="https://feeds.pacific-content.com/commandlineheroes">RSS feed</a> into your favorite podcast client.</p>
-</div>]]></description><link>http://100things.wzzrd.com/2018/01/16/Command-Line-Heroes.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2018/01/16/Command-Line-Heroes.html</guid><category><![CDATA[podcast]]></category><category><![CDATA[open source]]></category><category><![CDATA[red hat]]></category><category><![CDATA[WomenInTech]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Tue, 16 Jan 2018 00:00:00 GMT</pubDate></item><item><title><![CDATA[Fencing RHV or oVirt nested hypervisors]]></title><description><![CDATA[<div class="sect1">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Wed, 14 Feb 2018 10:31:43 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Fencing RHV or oVirt nested hypervisors]]></title><description><![CDATA[<div class="sect1">
 <h2 id="_my_setup">My setup</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -177,7 +132,52 @@ sudo vbmc start rhv-node-02.deployment6.lan</code></pre>
 </div>
 </div>
 </div>
-</div>]]></description><link>http://100things.wzzrd.com/2017/09/21/Fencing-RHV-or-o-Virt-nested-hypervisors.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2017/09/21/Fencing-RHV-or-o-Virt-nested-hypervisors.html</guid><category><![CDATA[RHV]]></category><category><![CDATA[oVirt]]></category><category><![CDATA[fencing]]></category><category><![CDATA[virtualbmc]]></category><category><![CDATA[libvirt]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Thu, 21 Sep 2017 00:00:00 GMT</pubDate></item><item><title><![CDATA[Demystifying Activation Keys]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>http://100things.wzzrd.com/2018/02/14/Fencing-RHV-or-o-Virt-nested-hypervisors.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2018/02/14/Fencing-RHV-or-o-Virt-nested-hypervisors.html</guid><category><![CDATA[RHV]]></category><category><![CDATA[oVirt]]></category><category><![CDATA[fencing]]></category><category><![CDATA[virtualbmc]]></category><category><![CDATA[libvirt]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Wed, 14 Feb 2018 00:00:00 GMT</pubDate></item><item><title><![CDATA[Screencasts on Linux, part 2]]></title><description><![CDATA[<div class="paragraph">
+<p>A while back, I wrote a <a href="http://100things.wzzrd.com/2017/06/21/Creating-screencasts-on-Linux.html">post</a> comparing some screencasting and video editing software on Linux.</p>
+</div>
+<div class="paragraph">
+<p>I that post, I mentioned a couple of video editing programs that are available, and basically noted that - as far as video editing is concerned - things were painful on Linux, at least for me.</p>
+</div>
+<div class="paragraph">
+<p>Well, no more, it seems. I seem to have missed a beautiful, functional, easy to use, and relatively fast one, called <a href="https://jliljebl.github.io/flowblade/">Flowblade</a>.</p>
+</div>
+<div class="paragraph">
+<p>I had never heard of it, and I haven&#8217;t seen it mentioned on any of the sites I looked for video editing software reviews on. I only ran into it while browsing the available Flatpaks on <a href="https://flathub.org/apps/">Flathub</a>. However, it has been in development for a couple of years, and it&#8217;s development seems active, though a bit dependent on a single coder.</p>
+</div>
+<div class="paragraph">
+<p>Having said that, I tip my hat to that single coder, who goes by the name of <a href="https://github.com/jliljebl">jliljebl</a>, because this software is A-MA-ZING!</p>
+</div>
+<div class="paragraph">
+<p>I&#8217;m not a professional video editor, so I&#8217;ve always struggled with other open source video editing software, and LightWorks, though good, is a bit steep for my occasional screencast editing, and not open source. (As an added problem, most of the open source video editing software crashed for me. They all crashed, all the time. That made me a sad panda.)</p>
+</div>
+<div class="paragraph">
+<p>Flowblade, however, is easy. All the required functionality is readily available, without having to jump through hoops or having to know all kinds of funky lingo. For things that were not immediately obvious to me (again: I&#8217;m still a noob in video editing), short tutorial videos are abundant on Youtube.</p>
+</div>
+<div class="paragraph">
+<p>All in all, if you are looking for a good, open source video editor, that&#8217;s really easy to use and does actually not crash all the time (which was a novelty as well!), take a look at Flowblade.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s like drinking a frothy mixture of rainbow juice and happy pills, topped with sprinkles of joy!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="http://100things.wzzrd.com/images/flowblade.png" alt="flowblade.png">
+</div>
+</div>]]></description><link>http://100things.wzzrd.com/2018/02/07/Screencasts-on-Linux-part-2.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2018/02/07/Screencasts-on-Linux-part-2.html</guid><category><![CDATA[video editing]]></category><category><![CDATA[open source]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Wed, 07 Feb 2018 00:00:00 GMT</pubDate></item><item><title><![CDATA[Command Line Heroes]]></title><description><![CDATA[<div class="paragraph">
+<p>I&#8217;ve been looking forward to this for quite a while, ever since it was announced: today, the first two episodes of Command Line Heroes were published. Command Line Heroes, or CLH for short, is a series of podcasts that tells the stories of open source. It&#8217;s hosted by Saron Yitbarek, of CodeNewbie fame, and sponsored by Red Hat.</p>
+</div>
+<div class="paragraph">
+<p>The podcast is not about how to create an alias in Bash, or how to generate a CSR with openssl. It is about the history of Linux, open source, devops and cloud.</p>
+</div>
+<div class="paragraph">
+<p>If you&#8217;re a geek, a hacker, a developer, a programmer, or any other sort of passionat open source builder, maker, or user, you&#8217;ll definitely want to look into this.</p>
+</div>
+<div class="paragraph">
+<p>The first episode is about the OS wars of the 80s and how Linux came to be. I&#8217;m listening to it right now, and it&#8217;s worth every second :)</p>
+</div>
+<div class="paragraph">
+<p>You can sign up for the newletter around Command Line Heroes <a href="https://www.redhat.com/en/command-line-heroes">here</a>, or just pull the <a href="https://feeds.pacific-content.com/commandlineheroes">RSS feed</a> into your favorite podcast client.</p>
+</div>]]></description><link>http://100things.wzzrd.com/2018/01/16/Command-Line-Heroes.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2018/01/16/Command-Line-Heroes.html</guid><category><![CDATA[podcast]]></category><category><![CDATA[open source]]></category><category><![CDATA[red hat]]></category><category><![CDATA[WomenInTech]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Tue, 16 Jan 2018 00:00:00 GMT</pubDate></item><item><title><![CDATA[Demystifying Activation Keys]]></title><description><![CDATA[<div class="paragraph">
 <p>In my daily work as a solutions architect for Red Hat, I regularly talk about Satellite 6 and explain to people how activation keys work, and how to best assign subscriptions to newly created virtual or physical machines.</p>
 </div>
 <div class="paragraph">
