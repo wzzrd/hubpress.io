@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Wed, 07 Feb 2018 20:30:47 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Screencasts on Linux, part 2]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Wed, 14 Feb 2018 10:29:39 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Screencasts on Linux, part 2]]></title><description><![CDATA[<div class="paragraph">
 <p>A while back, I wrote a <a href="http://100things.wzzrd.com/2017/06/21/Creating-screencasts-on-Linux.html">post</a> comparing some screencasting and video editing software on Linux.</p>
 </div>
 <div class="paragraph">
@@ -43,7 +43,141 @@
 </div>
 <div class="paragraph">
 <p>You can sign up for the newletter around Command Line Heroes <a href="https://www.redhat.com/en/command-line-heroes">here</a>, or just pull the <a href="https://feeds.pacific-content.com/commandlineheroes">RSS feed</a> into your favorite podcast client.</p>
-</div>]]></description><link>http://100things.wzzrd.com/2018/01/16/Command-Line-Heroes.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2018/01/16/Command-Line-Heroes.html</guid><category><![CDATA[podcast]]></category><category><![CDATA[open source]]></category><category><![CDATA[red hat]]></category><category><![CDATA[WomenInTech]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Tue, 16 Jan 2018 00:00:00 GMT</pubDate></item><item><title><![CDATA[Demystifying Activation Keys]]></title><description><![CDATA[<div class="paragraph">
+</div>]]></description><link>http://100things.wzzrd.com/2018/01/16/Command-Line-Heroes.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2018/01/16/Command-Line-Heroes.html</guid><category><![CDATA[podcast]]></category><category><![CDATA[open source]]></category><category><![CDATA[red hat]]></category><category><![CDATA[WomenInTech]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Tue, 16 Jan 2018 00:00:00 GMT</pubDate></item><item><title><![CDATA[Fencing RHV or oVirt nested hypervisors]]></title><description><![CDATA[<div class="sect1">
+<h2 id="_my_setup">My setup</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I have this nice AMD Ryzen ThreadRipper, with 64GiB or RAM. What I want to do is run RHV 4.1 in virtual machines, and be able to play around with nested virtualization, HA and fencing.</p>
+</div>
+<div class="paragraph">
+<p>Problem is, that my virtual machines will live on libvirt, and VMs on libvirt do not have IPMI interfaces.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_solution">The solution</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Enter virtualbmc! Stemming from the OpenStack project, virtualbmc is a small Python program that allows you to connect a virtual BMC interface to some of your VMs.</p>
+</div>
+<div class="paragraph">
+<p>The way it works, is as follows:</p>
+</div>
+<div class="paragraph">
+<p>You enable my copr, like njah:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ sudo dnf copr enable wzzrd/virtualbmc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and then you install the actual program, like njah:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>sudo dnf install python2-virtualbmc python-virtualbmc-doc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Virtualbmc will create a virtual BMC device for each VM you configure it for. If you, like me, want to have all BMC interfaces on the gateway of your virtual network, you need to choose a unique port for each virtual BMC interface. More below.</p>
+</div>
+<div class="sect2">
+<h3 id="_configuring_virtualbmc">Configuring virtualbmc</h3>
+<div class="paragraph">
+<p>Now you have to add virtual BMC interfaces to the VMs you want to control. For this, you need to pass the name of your VM, an address to bind to (optionally), a port to listen on, and a username and password to control the BMC.</p>
+</div>
+<div class="paragraph">
+<p>As said, I want all virtual BMCs to live on my virtual network gateway, 192.168.122.1, so I create the virtual BMC devices like njah:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ sudo vbmc add rhv-node-01.deployment6.lan --address 192.168.122.1 --port 7001 --username root --password foobar
+$ sudo vbmc add rhv-node-02.deployment6.lan --address 192.168.122.1 --port 7001 --username root --password foobar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>My hypervisor VMs (the so-called L1 machines), are obviously called rhv-node-01.deployment6.lan and rhv-node-02.deployment6.lan.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_starting_the_virtual_bmcs">Starting the virtual BMCs</h3>
+<div class="paragraph">
+<p>After creating the interfaces, we can see them, like njah:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ sudo vbmc list
++-----------------------------+--------+---------------+------+
+|         Domain name         | Status |    Address    | Port |
++-----------------------------+--------+---------------+------+
+| rhv-node-01.deployment6.lan |  down  | 192.168.122.1 | 7001 |
+| rhv-node-02.deployment6.lan |  down  | 192.168.122.1 | 7002 |
++-----------------------------+--------+---------------+------+</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And we can then start them to be used in RHV:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>sudo vbmc start rhv-node-01.deployment6.lan
+sudo vbmc start rhv-node-02.deployment6.lan</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which gives us njah:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ sudo vbmc list
++-----------------------------+--------+------------------+------+
+|         Domain name         |   Status  |    Address    | Port |
++-----------------------------+-----------+---------------+------+
+| rhv-node-01.deployment6.lan |  running  | 192.168.122.1 | 7001 |
+| rhv-node-02.deployment6.lan |  running  | 192.168.122.1 | 7002 |
++-----------------------------+--------+------------------+------+</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_power_management_for_the_rhv_nodes">Configuring power management for the RHV nodes</h3>
+<div class="paragraph">
+<p>Now, start your VMs, and in RHVM, go into the power management interface for each hypervisor, and do the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add a power management interface of type IPMILAN.</p>
+</li>
+<li>
+<p>As the IP, pass the 192.168.122.1 the we used above (or your equivalent)</p>
+</li>
+<li>
+<p>As the username and password, pass the values we used above</p>
+</li>
+<li>
+<p>Now here comes the tricky bit: in the options field, for each hypervisor, add:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>ipport=7001,lanplus=1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Change the port to reflect the port you have configured for this VM.</p>
+</div>
+<div class="paragraph">
+<p>It took me quite a bit of time to figure out the right options here. Hope this saves someone else a bunch of time!</p>
+</div>
+<div class="paragraph">
+<p>Happy testing!</p>
+</div>
+</div>
+</div>
+</div>]]></description><link>http://100things.wzzrd.com/2017/09/21/Fencing-RHV-or-o-Virt-nested-hypervisors.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2017/09/21/Fencing-RHV-or-o-Virt-nested-hypervisors.html</guid><category><![CDATA[RHV]]></category><category><![CDATA[oVirt]]></category><category><![CDATA[fencing]]></category><category><![CDATA[virtualbmc]]></category><category><![CDATA[libvirt]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Thu, 21 Sep 2017 00:00:00 GMT</pubDate></item><item><title><![CDATA[Demystifying Activation Keys]]></title><description><![CDATA[<div class="paragraph">
 <p>In my daily work as a solutions architect for Red Hat, I regularly talk about Satellite 6 and explain to people how activation keys work, and how to best assign subscriptions to newly created virtual or physical machines.</p>
 </div>
 <div class="paragraph">

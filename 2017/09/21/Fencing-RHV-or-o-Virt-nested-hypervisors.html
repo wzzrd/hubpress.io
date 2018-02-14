@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Fencing RHV or oVirt nested hypervisors</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="http://100things.wzzrd.com/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="//100things.wzzrd.com/themes/casper/assets/css/screen.css?v=1518604179685" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <link rel="canonical" href="http://100things.wzzrd.com/2017/09/21/Fencing-RHV-or-o-Virt-nested-hypervisors.html" />
+    <meta name="referrer" content="origin" />
+    
+    <meta property="og:site_name" content="100 things to do with Red Hat Management Products" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Fencing RHV or oVirt nested hypervisors" />
+    <meta property="og:description" content="My setup I have this nice AMD Ryzen ThreadRipper, with 64GiB or RAM. What I want to do is run RHV 4.1 in virtual machines, and be able to play around with nested virtualization, HA and fencing. Problem is, that my virtual machines will live on libvirt, and VMs" />
+    <meta property="og:url" content="http://100things.wzzrd.com/2017/09/21/Fencing-RHV-or-o-Virt-nested-hypervisors.html" />
+    <meta property="article:published_time" content="2017-09-21T00:00:00.000Z" />
+    <meta property="article:tag" content="RHV" />
+    <meta property="article:tag" content="oVirt" />
+    <meta property="article:tag" content="fencing" />
+    <meta property="article:tag" content="virtualbmc" />
+    <meta property="article:tag" content="libvirt" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Fencing RHV or oVirt nested hypervisors" />
+    <meta name="twitter:description" content="My setup I have this nice AMD Ryzen ThreadRipper, with 64GiB or RAM. What I want to do is run RHV 4.1 in virtual machines, and be able to play around with nested virtualization, HA and fencing. Problem is, that my virtual machines will live on libvirt, and VMs" />
+    <meta name="twitter:url" content="http://100things.wzzrd.com/2017/09/21/Fencing-RHV-or-o-Virt-nested-hypervisors.html" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "100 things to do with Red Hat Management Products",
+    "author": {
+        "@type": "Person",
+        "name": "Maxim Burgerhout",
+        "image": "https://avatars1.githubusercontent.com/u/69339?v=4",
+        "url": "http://100things.wzzrd.com/author/wzzrd/",
+        "sameAs": "https://about.me/MaximBurgerhout",
+        "description": "Solution architect at Red Hat for the platform and cloud portfolio; likes Python, likes Ruby, internally conflicted about that; maintainer of @RedHatSatellite"
+    },
+    "headline": "Fencing RHV or oVirt nested hypervisors",
+    "url": "http://100things.wzzrd.com/2017/09/21/Fencing-RHV-or-o-Virt-nested-hypervisors.html",
+    "datePublished": "2017-09-21T00:00:00.000Z",
+    "keywords": "RHV, oVirt, fencing, virtualbmc, libvirt",
+    "description": "My setup I have this nice AMD Ryzen ThreadRipper, with 64GiB or RAM. What I want to do is run RHV 4.1 in virtual machines, and be able to play around with nested virtualization, HA and fencing. Problem is, that my virtual machines will live on libvirt, and VMs"
+}
+    </script>
+
+    <meta name="generator" content="HubPress" />
+    <link rel="alternate" type="application/rss+xml" title="100 things to do with Red Hat Management Products" href="http://100things.wzzrd.com/rss/" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/atom-one-dark.min.css">
+    
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+</head>
+<body class="post-template tag-RHV tag-o-Virt tag-fencing tag-virtualbmc tag-libvirt nav-closed">
+
+    
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post tag-RHV tag-o-Virt tag-fencing tag-virtualbmc tag-libvirt">
+
+        <header class="post-header">
+            <h1 class="post-title">Fencing RHV or oVirt nested hypervisors</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2017-09-21">21 September 2017</time>  on <a href="http://100things.wzzrd.com/tag/RHV/">RHV</a>, <a href="http://100things.wzzrd.com/tag/o-Virt/">oVirt</a>, <a href="http://100things.wzzrd.com/tag/fencing/">fencing</a>, <a href="http://100things.wzzrd.com/tag/virtualbmc/">virtualbmc</a>, <a href="http://100things.wzzrd.com/tag/libvirt/">libvirt</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <div class="sect1">
+<h2 id="_my_setup">My setup</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I have this nice AMD Ryzen ThreadRipper, with 64GiB or RAM. What I want to do is run RHV 4.1 in virtual machines, and be able to play around with nested virtualization, HA and fencing.</p>
+</div>
+<div class="paragraph">
+<p>Problem is, that my virtual machines will live on libvirt, and VMs on libvirt do not have IPMI interfaces.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_solution">The solution</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Enter virtualbmc! Stemming from the OpenStack project, virtualbmc is a small Python program that allows you to connect a virtual BMC interface to some of your VMs.</p>
+</div>
+<div class="paragraph">
+<p>The way it works, is as follows:</p>
+</div>
+<div class="paragraph">
+<p>You enable my copr, like njah:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ sudo dnf copr enable wzzrd/virtualbmc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and then you install the actual program, like njah:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>sudo dnf install python2-virtualbmc python-virtualbmc-doc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Virtualbmc will create a virtual BMC device for each VM you configure it for. If you, like me, want to have all BMC interfaces on the gateway of your virtual network, you need to choose a unique port for each virtual BMC interface. More below.</p>
+</div>
+<div class="sect2">
+<h3 id="_configuring_virtualbmc">Configuring virtualbmc</h3>
+<div class="paragraph">
+<p>Now you have to add virtual BMC interfaces to the VMs you want to control. For this, you need to pass the name of your VM, an address to bind to (optionally), a port to listen on, and a username and password to control the BMC.</p>
+</div>
+<div class="paragraph">
+<p>As said, I want all virtual BMCs to live on my virtual network gateway, 192.168.122.1, so I create the virtual BMC devices like njah:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ sudo vbmc add rhv-node-01.deployment6.lan --address 192.168.122.1 --port 7001 --username root --password foobar
+$ sudo vbmc add rhv-node-02.deployment6.lan --address 192.168.122.1 --port 7001 --username root --password foobar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>My hypervisor VMs (the so-called L1 machines), are obviously called rhv-node-01.deployment6.lan and rhv-node-02.deployment6.lan.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_starting_the_virtual_bmcs">Starting the virtual BMCs</h3>
+<div class="paragraph">
+<p>After creating the interfaces, we can see them, like njah:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ sudo vbmc list
++-----------------------------+--------+---------------+------+
+|         Domain name         | Status |    Address    | Port |
++-----------------------------+--------+---------------+------+
+| rhv-node-01.deployment6.lan |  down  | 192.168.122.1 | 7001 |
+| rhv-node-02.deployment6.lan |  down  | 192.168.122.1 | 7002 |
++-----------------------------+--------+---------------+------+</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And we can then start them to be used in RHV:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>sudo vbmc start rhv-node-01.deployment6.lan
+sudo vbmc start rhv-node-02.deployment6.lan</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which gives us njah:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>$ sudo vbmc list
++-----------------------------+--------+------------------+------+
+|         Domain name         |   Status  |    Address    | Port |
++-----------------------------+-----------+---------------+------+
+| rhv-node-01.deployment6.lan |  running  | 192.168.122.1 | 7001 |
+| rhv-node-02.deployment6.lan |  running  | 192.168.122.1 | 7002 |
++-----------------------------+--------+------------------+------+</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_power_management_for_the_rhv_nodes">Configuring power management for the RHV nodes</h3>
+<div class="paragraph">
+<p>Now, start your VMs, and in RHVM, go into the power management interface for each hypervisor, and do the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add a power management interface of type IPMILAN.</p>
+</li>
+<li>
+<p>As the IP, pass the 192.168.122.1 the we used above (or your equivalent)</p>
+</li>
+<li>
+<p>As the username and password, pass the values we used above</p>
+</li>
+<li>
+<p>Now here comes the tricky bit: in the options field, for each hypervisor, add:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>ipport=7001,lanplus=1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Change the port to reflect the port you have configured for this VM.</p>
+</div>
+<div class="paragraph">
+<p>It took me quite a bit of time to figure out the right options here. Hope this saves someone else a bunch of time!</p>
+</div>
+<div class="paragraph">
+<p>Happy testing!</p>
+</div>
+</div>
+</div>
+</div>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="http://100things.wzzrd.com/author/wzzrd/" style="background-image: url(https://avatars1.githubusercontent.com/u/69339?v&#x3D;4)"><span class="hidden">Maxim Burgerhout's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="http://100things.wzzrd.com/author/wzzrd/">Maxim Burgerhout</a></h4>
+
+                    <p>Solution architect at Red Hat for the platform and cloud portfolio; likes Python, likes Ruby, internally conflicted about that; maintainer of @RedHatSatellite</p>
+                <div class="author-meta">
+                    <span class="author-location icon-location">somewhere around Leiden, the Netherlands</span>
+                    <span class="author-link icon-link"><a href="https://about.me/MaximBurgerhout">https://about.me/MaximBurgerhout</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Fencing%20RHV%20or%20oVirt%20nested%20hypervisors&amp;url=http://100things.wzzrd.com/2017/09/21/Fencing-RHV-or-o-Virt-nested-hypervisors.html"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://100things.wzzrd.com/2017/09/21/Fencing-RHV-or-o-Virt-nested-hypervisors.html"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://100things.wzzrd.com/2017/09/21/Fencing-RHV-or-o-Virt-nested-hypervisors.html"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+
+        <section class="post-comments">
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = '100things'; // required: replace example with your forum shortname
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
+
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="http://100things.wzzrd.com">100 things to do with Red Hat Management Products</a> &copy; 2018</section>
+            <section class="poweredby">Proudly published with <a href="http://hubpress.io">HubPress</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();
+      </script>
+
+    <script type="text/javascript" src="//100things.wzzrd.com/themes/casper/assets/js/jquery.fitvids.js?v=1518604179685"></script>
+    <script type="text/javascript" src="//100things.wzzrd.com/themes/casper/assets/js/index.js?v=1518604179685"></script>
+
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-1886096-11', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+</body>
+</html>
