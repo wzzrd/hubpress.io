@@ -1,0 +1,61 @@
+= Using the ovirt_vms module with cloud_init
+:published_at: 2018-04-10
+:hp-tags: ansible, rhv, ovirt, cloud-init
+
+A quick blog today. I've been wrestling with the ovirt_vms module in Ansible 2.5. I wanted to deploy a RHEL VM from a template on a RHV 4.1 cluster and use cloud-init to customize the VM.
+
+The ovirt_vms module offers a cloud_init option that takes a custom_script parameter. According to the docs, you can feed this parameter your script like so:
+
+....
+- name: create VM
+  ovirt_vms:
+    name: myvm
+    auth: "{{ ovirt_auth}}"
+    [...] [etc...]
+    wait: yes
+    cloud_init:
+      custom_script: |
+        write_files:
+        - path: /tmp/my-userdata.sh
+          permissions: '0755'
+          content: |                                                        
+            #!/bin/bash
+            echo "foo"
+....
+
+What this does not tell you, is that this userdata is never touched if you just drop it in the playbook like this. I mean, it makes sense, because you have to tell cloud-init to do something with the script, but the ovirt_vms documentation doesn't tell you how to do that. Therefore, the `/tmp/my-userdata.sh` script will be created, but it will not be executed.
+
+After some experimenting, it turns out you have to pass the custom_script parameter a second statement after `write_files`. You need to pass it `runcmd`.
+
+So if anyone is stumbling across this like I did, here's how to make your cloud-init work with ovirt_vms:
+
+....
+- name: create VM
+  ovirt_vms:
+    name: myvm
+    auth: "{{ ovirt_auth}}"
+    [...] [etc...]
+    wait: yes
+    cloud_init:
+      custom_script: |
+        write_files:
+        - path: /tmp/my-userdata.sh
+          permissions: '0755'
+          content: |                                                        
+            #!/bin/bash
+            echo "foo"
+        runcmd:
+        - /tmp/my-userdata.sh
+....
+
+This may be obvious if you write cloud-init things all day, but I don't usually spend much time doing that :)
+
+
+
+
+
+
+
+
+
+
