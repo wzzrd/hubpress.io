@@ -1,4 +1,59 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Wed, 14 Feb 2018 10:33:50 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Fencing RHV or oVirt nested hypervisors]]></title><description><![CDATA[<div class="sect1">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Tue, 10 Apr 2018 20:20:54 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Using the ovirt_vms module with cloud_init]]></title><description><![CDATA[<div class="paragraph">
+<p>A quick blog today. I&#8217;ve been wrestling with the ovirt_vms module in Ansible 2.5. I wanted to deploy a RHEL VM from a template on a RHV 4.1 cluster and use cloud-init to customize the VM.</p>
+</div>
+<div class="paragraph">
+<p>The ovirt_vms module offers a cloud_init option that takes a custom_script parameter. According to the docs, you can feed this parameter your script like so:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>- name: create VM
+  ovirt_vms:
+    name: myvm
+    auth: "{{ ovirt_auth}}"
+    [...] [etc...]
+    wait: yes
+    cloud_init:
+      custom_script: |
+        write_files:
+        - path: /tmp/my-userdata.sh
+          permissions: '0755'
+          content: |
+            #!/bin/bash
+            echo "foo"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>What this does not tell you, is that this userdata is never touched if you just drop it in the playbook like this. I mean, it makes sense, because you have to tell cloud-init to do something with the script, but the ovirt_vms documentation doesn&#8217;t tell you how to do that. Therefore, the <code>/tmp/my-userdata.sh</code> script will be created, but it will not be executed.</p>
+</div>
+<div class="paragraph">
+<p>After some experimenting, it turns out you have to pass the custom_script parameter a second statement after <code>write_files</code>. You need to pass it <code>runcmd</code>.</p>
+</div>
+<div class="paragraph">
+<p>So if anyone is stumbling across this like I did, here&#8217;s how to make your cloud-init work with ovirt_vms:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>- name: create VM
+  ovirt_vms:
+    name: myvm
+    auth: "{{ ovirt_auth}}"
+    [...] [etc...]
+    wait: yes
+    cloud_init:
+      custom_script: |
+        write_files:
+        - path: /tmp/my-userdata.sh
+          permissions: '0755'
+          content: |
+            #!/bin/bash
+            echo "foo"
+        runcmd:
+        - /tmp/my-userdata.sh</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This may be obvious if you write cloud-init things all day, but I don&#8217;t usually spend much time doing that :)</p>
+</div>]]></description><link>http://100things.wzzrd.com/2018/04/10/Using-the-ovirt-vms-module-with-cloud-init.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2018/04/10/Using-the-ovirt-vms-module-with-cloud-init.html</guid><category><![CDATA[ansible]]></category><category><![CDATA[rhv]]></category><category><![CDATA[ovirt]]></category><category><![CDATA[cloud-init]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Tue, 10 Apr 2018 00:00:00 GMT</pubDate></item><item><title><![CDATA[Fencing RHV or oVirt nested hypervisors]]></title><description><![CDATA[<div class="sect1">
 <h2 id="_my_setup">My setup</h2>
 <div class="sectionbody">
 <div class="paragraph">
