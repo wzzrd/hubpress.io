@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Wed, 27 Jun 2018 11:59:38 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Running cockpit on a Satellite Capsule / Foreman Proxy]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Wed, 27 Jun 2018 12:01:53 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Running cockpit on a Satellite Capsule / Foreman Proxy]]></title><description><![CDATA[<div class="paragraph">
 <p>When I bought my new workstation - those Ryzen beasts are FAST! - I decided I would build my new lab properly, and with properly, I meant with proper SSL certificates for all apps.</p>
 </div>
 <div class="paragraph">
@@ -21,7 +21,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">yum -y install cockpit</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum -y install cockpit</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -29,7 +29,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">mkdir -p /usr/lib/systemd/system/cockpit.socket
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir -p /usr/lib/systemd/system/cockpit.socket
 cat &lt;&lt; EOF &gt; /usr/lib/systemd/system/cockpit.socket/10-port.conf
 [Socket]
 # need to reset the list of ListenStreams first, else it becomes a list that still includes 9090
@@ -44,7 +44,7 @@ systemctl daemon-reload</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash"># cockpit cannot run on 9090 on a capsule, because there's a capsule process there already
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># cockpit cannot run on 9090 on a capsule, because there's a capsule process there already
 firewall-cmd --add-port=10090/tcp --permanent
 firewall-cmd --reload</code></pre>
 </div>
@@ -54,7 +54,7 @@ firewall-cmd --reload</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">semanage port -a -t websm_port_t -p tcp 10090</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">semanage port -a -t websm_port_t -p tcp 10090</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -62,7 +62,7 @@ firewall-cmd --reload</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">cd /etc/capscerts
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd /etc/capscerts
 cat caps.crt &gt;&gt; /etc/cockpit/ws-certs.d/caps.cert
 cat caps.key &gt;&gt; /etc/cockpit/ws-certs.d/caps.cert</code></pre>
 </div>
@@ -72,7 +72,7 @@ cat caps.key &gt;&gt; /etc/cockpit/ws-certs.d/caps.cert</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">systemctl restart cockpit.socket</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">systemctl restart cockpit.socket</code></pre>
 </div>
 </div>
 <div class="paragraph">

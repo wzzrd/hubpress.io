@@ -9,7 +9,7 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" type="text/css" href="//100things.wzzrd.com/themes/casper/assets/built/screen.css?v=1530100778824" />
+    <link rel="stylesheet" type="text/css" href="//100things.wzzrd.com/themes/casper/assets/built/screen.css?v=1530100913580" />
 
     <link rel="canonical" href="http://100things.wzzrd.com/2018/06/27/Running-cockpit-on-a-Satellite-Capsule-Foreman-Proxy.html" />
     <meta name="referrer" content="origin" />
@@ -131,7 +131,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">yum -y install cockpit</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">yum -y install cockpit</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -139,7 +139,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">mkdir -p /usr/lib/systemd/system/cockpit.socket
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir -p /usr/lib/systemd/system/cockpit.socket
 cat &lt;&lt; EOF &gt; /usr/lib/systemd/system/cockpit.socket/10-port.conf
 [Socket]
 # need to reset the list of ListenStreams first, else it becomes a list that still includes 9090
@@ -154,7 +154,7 @@ systemctl daemon-reload</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash"># cockpit cannot run on 9090 on a capsule, because there's a capsule process there already
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># cockpit cannot run on 9090 on a capsule, because there's a capsule process there already
 firewall-cmd --add-port=10090/tcp --permanent
 firewall-cmd --reload</code></pre>
 </div>
@@ -164,7 +164,7 @@ firewall-cmd --reload</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">semanage port -a -t websm_port_t -p tcp 10090</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">semanage port -a -t websm_port_t -p tcp 10090</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -172,7 +172,7 @@ firewall-cmd --reload</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">cd /etc/capscerts
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd /etc/capscerts
 cat caps.crt &gt;&gt; /etc/cockpit/ws-certs.d/caps.cert
 cat caps.key &gt;&gt; /etc/cockpit/ws-certs.d/caps.cert</code></pre>
 </div>
@@ -182,7 +182,7 @@ cat caps.key &gt;&gt; /etc/cockpit/ws-certs.d/caps.cert</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">systemctl restart cockpit.socket</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">systemctl restart cockpit.socket</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -295,7 +295,7 @@ cat caps.key &gt;&gt; /etc/cockpit/ws-certs.d/caps.cert</code></pre>
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous">
     </script>
-    <script type="text/javascript" src="//100things.wzzrd.com/themes/casper/assets/js/jquery.fitvids.js?v=1530100778824"></script>
+    <script type="text/javascript" src="//100things.wzzrd.com/themes/casper/assets/js/jquery.fitvids.js?v=1530100913580"></script>
 
 
     <script>
