@@ -31,12 +31,12 @@
     "opencollective": ""
   },
   "theme": {
-    "name": "saga"
+    "name": "casper"
   },
   "urls": {
     "site": "http://100things.wzzrd.com",
     "hubpress": "http://100things.wzzrd.com",
-    "theme": "//100things.wzzrd.com/themes/casper",
+    "theme": "//100things.wzzrd.com/themes/saga",
     "images": "http://100things.wzzrd.com/images"
   },
   "initialisationConfigComponent": {
