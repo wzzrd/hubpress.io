@@ -1,0 +1,62 @@
+= Running cockpit on a Satellite Capsule / Foreman Proxy
+:published_at: 2018-06-27
+:hp-tags: Satellite, Capsule, Cockpit, SSL, Certificates, FreeIPA, IdM, Foreman
+
+When I bought my new workstation - those Ryzen beasts are FAST! - I decided I would build my new lab properly, and with properly, I meant with proper SSL certificates for all apps.
+
+So I set up Red Hat IdM on a simple VM, and then imported the CA into my browser. From that point on, all of my lab VMs are new running with a certificate signed by that CA. Nice green lock icons in my browser. Yay!
+
+I've built a RHV cluster, a Satellite 6 machine, with two Capsules, an Ansible Tower node, and more infrastructure, just to play with, all with proper certificates signed by my IdM CA.
+
+That last hurdle was to setup Cockpit on all my VMs, and use a proper certificate for that as well.
+
+For 'normal' VMs, that fairly easy, but my Capsules (and the Satellite itself) have processes that try to bind to the same port as Cockpit. 
+
+The workaround is simple and solid, and I'm documenting it here for posterity:
+
+First, you install the Cockpit software itself:
+....
+yum -y install cockpit
+....
+ 
+But because Cockpit needs to bind on another port, we will override it's unit file:
+....
+mkdir -p /usr/lib/systemd/system/cockpit.socket
+cat << EOF > /usr/lib/systemd/system/cockpit.socket/10-port.conf
+[Socket]
+# need to reset the list of ListenStreams first, else it becomes a list that still includes 9090
+ListenStream=
+ListenStream=10090
+EOF
+systemctl daemon-reload
+....
+
+
+We need to open a port for Cockpit to be reachable from the outside:
+....
+# cockpit cannot run on 9090 on a capsule, because there's a capsule process there already
+firewall-cmd --add-port=10090/tcp --permanent
+firewall-cmd --reload
+.... 
+ 
+
+And tell SELinux to actually allow Cockpit to bind to that port, too:
+....
+semanage port -a -t websm_port_t -p tcp 10090
+.... 
+ 
+Finally, we'll use the Capsules certificate and private key (I stored them in /etc/capscerts) to create a single file that Cockpit will use:
+.... 
+cd /etc/capscerts
+cat caps.crt >> /etc/cockpit/ws-certs.d/caps.cert
+cat caps.key >> /etc/cockpit/ws-certs.d/caps.cert
+....  
+
+Finally, we restart the Cockpit socket
+....  
+systemctl restart cockpit.socket
+....  
+
+And we're done!
+
+
