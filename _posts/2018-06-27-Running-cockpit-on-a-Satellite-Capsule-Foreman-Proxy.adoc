@@ -21,7 +21,8 @@ yum -y install cockpit
 ----
  
 But because Cockpit needs to bind on another port, we will override it's unit file:
-....
+[source,bash]
+----
 mkdir -p /usr/lib/systemd/system/cockpit.socket
 cat << EOF > /usr/lib/systemd/system/cockpit.socket/10-port.conf
 [Socket]
@@ -30,33 +31,37 @@ ListenStream=
 ListenStream=10090
 EOF
 systemctl daemon-reload
-....
+----
 
 
 We need to open a port for Cockpit to be reachable from the outside:
-....
+[source,bash]
+----
 # cockpit cannot run on 9090 on a capsule, because there's a capsule process there already
 firewall-cmd --add-port=10090/tcp --permanent
 firewall-cmd --reload
-.... 
+---- 
  
 
 And tell SELinux to actually allow Cockpit to bind to that port, too:
-....
+[source,bash]
+----
 semanage port -a -t websm_port_t -p tcp 10090
-.... 
+---- 
  
 Finally, we'll use the Capsules certificate and private key (I stored them in /etc/capscerts) to create a single file that Cockpit will use:
-.... 
+[source,bash]
+---- 
 cd /etc/capscerts
 cat caps.crt >> /etc/cockpit/ws-certs.d/caps.cert
 cat caps.key >> /etc/cockpit/ws-certs.d/caps.cert
-....  
+----  
 
 Finally, we restart the Cockpit socket
-....  
+[source,bash]
+----
 systemctl restart cockpit.socket
-....  
+----  
 
 And we're done!
 
