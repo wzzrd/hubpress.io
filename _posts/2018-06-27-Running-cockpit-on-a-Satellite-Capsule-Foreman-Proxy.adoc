@@ -1,6 +1,7 @@
 = Running cockpit on a Satellite Capsule / Foreman Proxy
 :published_at: 2018-06-27
 :hp-tags: Satellite, Capsule, Cockpit, SSL, Certificates, FreeIPA, IdM, Foreman
+:source-highlighter: highlightjs
 
 When I bought my new workstation - those Ryzen beasts are FAST! - I decided I would build my new lab properly, and with properly, I meant with proper SSL certificates for all apps.
 
