@@ -15,9 +15,10 @@ For 'normal' VMs, that fairly easy, but my Capsules (and the Satellite itself) h
 The workaround is simple and solid, and I'm documenting it here for posterity:
 
 First, you install the Cockpit software itself:
-....
+[source,bash]
+----
 yum -y install cockpit
-....
+----
  
 But because Cockpit needs to bind on another port, we will override it's unit file:
 ....
