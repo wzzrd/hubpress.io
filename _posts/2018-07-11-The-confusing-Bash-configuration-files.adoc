@@ -36,6 +36,6 @@ So for an interactive login shell, this happens (assuming the default config fil
 
 Finally, when Bash is invoked as the interpreter for a shell script, it will read `${BASH_ENV}`, and it will read and execute the filename it finds in there. For Fedora 28, that's `/usr/share/Modules/init/bash`, owned by the environment-modules package.
 
-Mind that this only happens if the shell script starts with the proper Bash shebang: `#!/bin/bash` or `#!/usr/bin/bash`, not with `#!/bin/sh`. Starting your shell script with `#!/bin/sh` will yield completely different results, as that will make Bash run in compatibility mode for old(er) shells.
+Mind that this only happens if the shell script starts with the proper Bash shebang: `\#!/bin/bash` or `#!/usr/bin/bash`, not with `\#!/bin/sh`. Starting your shell script with `#!/bin/sh` will yield completely different results, as that will make Bash run in compatibility mode for old(er) shells.
 
 
