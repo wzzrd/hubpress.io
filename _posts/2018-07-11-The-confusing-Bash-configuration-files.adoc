@@ -1,0 +1,41 @@
+= The confusing Bash configuration files
+:published_at: 2018-07-11
+:hp-tags: bash, linux, configuration, notetofutureself
+
+This blog is mostly a reminder for my future self, because I always end up forgetting this.
+
+Bash has a bunch of configuration files it parsers through when you fire it up.
+
+Bash reads them in this order (on Fedora, and I suppose RHEL and derivatives too) if invoked as an interactive login shell (i.e. when you log into the system on the console, or through SSH):
+
+- `/etc/profile` (if it exists)
+- `~/.bash_profile` (if it exists)
+- `~/.bash_login` (if it exists, and ~/.bash_profile does not exist)
+- `~/.profile` (if it exists, and if the above two files do not)
+
+When exiting, the interactive login shell executes:
+
+- `~/.bash_logout` (if it exists)
+- `/etc/bash.bash_logout` (if it exists)
+
+For an interactive non-login shell (that's when you start gnome-terminal or tilix in X or Wayland), Bash just executes `~/.bashrc`, if it exists. (So, no, `/etc/bashrc` is *not* invoked by Bash itself, but usually through `~/.bashrc`, which by default sources `/etc/bashrc`.)
+
+Because this is odd, the default `~/.bash_profile` actually sources `~/.bashrc`.
+
+So for an interactive login shell, this happens (assuming the default config files from `/etc/skel` on Fedora 28):
+
+1. `/etc/profile` is read, 
+1. whatever is in `/etc/profile.d` is included
+1. `/etc/bashrc` is included, and the `${BASHRCSOURCED}` variable is set to Y 
+1. `~/.bash_profile` is read
+1. `~/.bashrc` is sourced through `~/.bash_profile`
+1. `/etc/bashrc` is sourced, again, this time through `~/.bashrc`, but it's not actually parsed again, because `${BASHRCSOURCED}` was already set to Y
+1. neither `~/.bash_login`, nor `~/.profile` are sourced, because `~/.bash_profile` exists
+1. You get your shell
+
+
+Finally, when Bash is invoked as the interpreter for a shell script, it will read `${BASH_ENV}`, and it will read and execute the filename it finds in there. For Fedora 28, that's `/usr/share/Modules/init/bash`, owned by the environment-modules package.
+
+Mind that this only happens if the shell script starts with the proper Bash shebang: `#!/bin/bash` or `#!/usr/bin/bash`, not with `#!/bin/sh`. Starting your shell script with `#!/bin/sh` will yield completely different results, as that will make Bash run in compatibility mode for old(er) shells.
+
+
