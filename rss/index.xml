@@ -1,4 +1,84 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Wed, 27 Jun 2018 12:01:53 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Running cockpit on a Satellite Capsule / Foreman Proxy]]></title><description><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[100 things to do with Red Hat Management Products]]></title><description><![CDATA[A series of blogs and videos about the cool things you can do with Red Hat (Systems) Management products ]]></description><link>http://100things.wzzrd.com</link><image><url>blog_cover.png</url><title>100 things to do with Red Hat Management Products</title><link>http://100things.wzzrd.com</link></image><generator>RSS for Node</generator><lastBuildDate>Wed, 11 Jul 2018 19:39:25 GMT</lastBuildDate><atom:link href="http://100things.wzzrd.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[The confusing Bash configuration files]]></title><description><![CDATA[<div class="paragraph">
+<p>This blog is mostly a reminder for my future self, because I always end up forgetting this.</p>
+</div>
+<div class="paragraph">
+<p>Bash has a bunch of configuration files it parsers through when you fire it up.</p>
+</div>
+<div class="paragraph">
+<p>Bash reads them in this order (on Fedora, and I suppose RHEL and derivatives too) if invoked as an interactive login shell (i.e. when you log into the system on the console, or through SSH):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>/etc/profile</code> (if it exists)</p>
+</li>
+<li>
+<p><code>~/.bash_profile</code> (if it exists)</p>
+</li>
+<li>
+<p><code>~/.bash_login</code> (if it exists, and ~/.bash_profile does not exist)</p>
+</li>
+<li>
+<p><code>~/.profile</code> (if it exists, and if the above two files do not)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When exiting, the interactive login shell executes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>~/.bash_logout</code> (if it exists)</p>
+</li>
+<li>
+<p><code>/etc/bash.bash_logout</code> (if it exists)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For an interactive non-login shell (that&#8217;s when you start gnome-terminal or tilix in X or Wayland), Bash just executes <code>~/.bashrc</code>, if it exists. (So, no, <code>/etc/bashrc</code> is <strong>not</strong> invoked by Bash itself, but usually through <code>~/.bashrc</code>, which by default sources <code>/etc/bashrc</code>.)</p>
+</div>
+<div class="paragraph">
+<p>Because this is odd, the default <code>~/.bash_profile</code> actually sources <code>~/.bashrc</code>.</p>
+</div>
+<div class="paragraph">
+<p>So for an interactive login shell, this happens (assuming the default config files from <code>/etc/skel</code> on Fedora 28):</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>/etc/profile</code> is read,</p>
+</li>
+<li>
+<p>whatever is in <code>/etc/profile.d</code> is included</p>
+</li>
+<li>
+<p><code>/etc/bashrc</code> is included, and the <code>${BASHRCSOURCED}</code> variable is set to Y</p>
+</li>
+<li>
+<p><code>~/.bash_profile</code> is read</p>
+</li>
+<li>
+<p><code>~/.bashrc</code> is sourced through <code>~/.bash_profile</code></p>
+</li>
+<li>
+<p><code>/etc/bashrc</code> is sourced, again, this time through <code>~/.bashrc</code>, but it&#8217;s not actually parsed again, because <code>${BASHRCSOURCED}</code> was already set to Y</p>
+</li>
+<li>
+<p>neither <code>~/.bash_login</code>, nor <code>~/.profile</code> are sourced, because <code>~/.bash_profile</code> exists</p>
+</li>
+<li>
+<p>You get your shell</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Finally, when Bash is invoked as the interpreter for a shell script, it will read <code>${BASH_ENV}</code>, and it will read and execute the filename it finds in there. For Fedora 28, that&#8217;s <code>/usr/share/Modules/init/bash</code>, owned by the environment-modules package.</p>
+</div>
+<div class="paragraph">
+<p>Mind that this only happens if the shell script starts with the proper Bash shebang: <code><mark>!/bin/bash</code> or <code></mark>!/usr/bin/bash</code>, not with <code><mark>!/bin/sh</code>. Starting your shell script with <code></mark>!/bin/sh</code> will yield completely different results, as that will make Bash run in compatibility mode for old(er) shells.</p>
+</div>]]></description><link>http://100things.wzzrd.com/2018/07/11/The-confusing-Bash-configuration-files.html</link><guid isPermaLink="true">http://100things.wzzrd.com/2018/07/11/The-confusing-Bash-configuration-files.html</guid><category><![CDATA[bash]]></category><category><![CDATA[linux]]></category><category><![CDATA[configuration]]></category><category><![CDATA[notetofutureself]]></category><dc:creator><![CDATA[Maxim Burgerhout]]></dc:creator><pubDate>Wed, 11 Jul 2018 00:00:00 GMT</pubDate></item><item><title><![CDATA[Running cockpit on a Satellite Capsule / Foreman Proxy]]></title><description><![CDATA[<div class="paragraph">
 <p>When I bought my new workstation - those Ryzen beasts are FAST! - I decided I would build my new lab properly, and with properly, I meant with proper SSL certificates for all apps.</p>
 </div>
 <div class="paragraph">
