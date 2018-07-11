@@ -9,7 +9,7 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" type="text/css" href="//100things.wzzrd.com/themes/casper/assets/built/screen.css?v=1531337965661" />
+    <link rel="stylesheet" type="text/css" href="//100things.wzzrd.com/themes/casper/assets/built/screen.css?v=1531338035498" />
 
     <link rel="canonical" href="http://100things.wzzrd.com/2018/07/11/The-confusing-Bash-configuration-files.html" />
     <meta name="referrer" content="origin" />
@@ -183,7 +183,7 @@
 <p>Finally, when Bash is invoked as the interpreter for a shell script, it will read <code>${BASH_ENV}</code>, and it will read and execute the filename it finds in there. For Fedora 28, that&#8217;s <code>/usr/share/Modules/init/bash</code>, owned by the environment-modules package.</p>
 </div>
 <div class="paragraph">
-<p>Mind that this only happens if the shell script starts with the proper Bash shebang: <code><mark>!/bin/bash</code> or <code></mark>!/usr/bin/bash</code>, not with <code><mark>!/bin/sh</code>. Starting your shell script with <code></mark>!/bin/sh</code> will yield completely different results, as that will make Bash run in compatibility mode for old(er) shells.</p>
+<p>Mind that this only happens if the shell script starts with the proper Bash shebang: <code>#!/bin/bash</code> or <code>#!/usr/bin/bash</code>, not with <code>#!/bin/sh</code>. Starting your shell script with <code>#!/bin/sh</code> will yield completely different results, as that will make Bash run in compatibility mode for old(er) shells.</p>
 </div>
             </section>
 
@@ -292,7 +292,7 @@
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous">
     </script>
-    <script type="text/javascript" src="//100things.wzzrd.com/themes/casper/assets/js/jquery.fitvids.js?v=1531337965661"></script>
+    <script type="text/javascript" src="//100things.wzzrd.com/themes/casper/assets/js/jquery.fitvids.js?v=1531338035498"></script>
 
 
     <script>
